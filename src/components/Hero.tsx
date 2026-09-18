@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, type PointerEvent } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { cn } from "@/lib/cn";
 
 /**
  * Typography-as-graphic Hero, v2: same lilac/plum/lime palette and copy as
@@ -25,6 +26,40 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 // down to "경험으로.". Shared by the draw-in path and the looping dot's
 // <animateMotion> so both always trace the same line.
 const CURVE_PATH = "M 33 24 C 54 32, 44 60, 72 79";
+
+/**
+ * A quiet wireframe orb — three tilted rings in a shared 3D space, spun
+ * slowly around one axis. Pure CSS (perspective + preserve-3d + a single
+ * @keyframes in globals.css), so the site-wide reduced-motion rule that
+ * zeroes animation-duration freezes it for free — no JS branching needed
+ * here the way the curve above requires.
+ */
+function WireframeOrb({ className }: { className?: string }) {
+  return (
+    <div
+      aria-hidden
+      className={cn("pointer-events-none [perspective:800px]", className)}
+    >
+      <div
+        className="relative h-full w-full animate-[orb-spin_30s_linear_infinite]"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <span
+          className="absolute inset-0 rounded-full border border-plum/30"
+          style={{ transform: "rotateX(70deg)" }}
+        />
+        <span
+          className="absolute inset-0 rounded-full border border-lime/70"
+          style={{ transform: "rotateY(65deg) rotateX(15deg)" }}
+        />
+        <span
+          className="absolute inset-0 rounded-full border border-plum/20"
+          style={{ transform: "rotateX(20deg) rotateZ(55deg)" }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export function Hero() {
   const reducedMotion = usePrefersReducedMotion();
@@ -104,6 +139,14 @@ export function Hero() {
             )}
           </svg>
 
+          {/* Center wireframe orb — sits in the open corridor between the
+              two lines, where the curve already runs. Desktop/tablet only;
+              a smaller static-flow version replaces it on mobile below,
+              where that corridor doesn't exist. */}
+          <WireframeOrb
+            className="absolute left-[42%] top-1/2 -z-10 hidden h-[130px] w-[130px] -translate-x-1/2 -translate-y-1/2 sm:block sm:h-[150px] sm:w-[150px] lg:h-[170px] lg:w-[170px]"
+          />
+
           <h1 className="poster-headline flex flex-col gap-2 text-plum sm:gap-3">
             <span className="flex justify-start">
               <span className="relative isolate inline-block">
@@ -156,6 +199,8 @@ export function Hero() {
             </span>
           </h1>
         </div>
+
+        <WireframeOrb className="mx-auto mt-8 block h-[110px] w-[110px] sm:hidden" />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}

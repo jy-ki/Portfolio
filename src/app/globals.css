@@ -118,6 +118,18 @@ body {
   color: var(--foreground);
 }
 
+/* Hero's center wireframe orb — a slow single-axis spin for the tilted
+   ring group. The reduced-motion rule below already collapses any CSS
+   animation's duration to near-zero, so this needs no separate handling. */
+@keyframes orb-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 /* Custom cursor: only active once JS confirms a fine pointer and no
    reduced-motion preference. */
 html.custom-cursor-active,

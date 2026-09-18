@@ -1,25 +1,45 @@
 import type { ReactNode } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { cn } from "@/lib/cn";
 
 export function DetailSection({
   step,
   title,
   children,
+  tone = "light",
 }: {
   step: string;
   title: string;
   children: ReactNode;
+  tone?: "light" | "dark";
 }) {
+  const dark = tone === "dark";
+
   return (
     <ScrollReveal>
       <section className="mx-auto max-w-3xl px-6 py-12 sm:px-8">
-        <p className="text-xs font-semibold tracking-[0.2em] text-coral">
+        <p
+          className={cn(
+            "text-xs font-semibold tracking-[0.2em]",
+            dark ? "text-lilac" : "text-coral"
+          )}
+        >
           {step}
         </p>
-        <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+        <h2
+          className={cn(
+            "mt-2 text-2xl font-bold tracking-tight sm:text-3xl",
+            dark ? "text-ivory" : "text-ink"
+          )}
+        >
           {title}
         </h2>
-        <div className="prose-detail mt-6 flex flex-col gap-4 text-base leading-relaxed text-ink/80">
+        <div
+          className={cn(
+            "mt-6 flex flex-col gap-4 text-base leading-relaxed",
+            dark ? "text-ivory/80" : "text-ink/80"
+          )}
+        >
           {children}
         </div>
       </section>

@@ -2,20 +2,18 @@ import type { Metadata } from "next";
 import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { selectedWork } from "@/data/projects";
-
-const project = selectedWork.find((item) => item.slug === "hets-club")!;
+import { Media } from "@/components/Media";
+import { hetsClub } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "HET’S CLUB — 김지영 포트폴리오",
-  description: project.concept,
+  description: hetsClub.concept,
 };
 
 export default function HetsClubPage() {
   return (
     <DetailPageShell>
-      <DetailHeader project={project} />
+      <DetailHeader project={hetsClub} />
 
       <DetailSection step="01" title="기획 질문">
         <p>
@@ -64,12 +62,10 @@ export default function HetsClubPage() {
           컨셉 의도가 비주얼까지 일관되게 이어지려면, 기획과 디자인 사이의
           번역 손실을 줄여야 한다고 판단했기 때문입니다.
         </p>
-        <ImagePlaceholder
-          slot={{
-            label: "메인 포스터",
-            note: "캐릭터 정면 + “도베르만이 되는 법” 안내문 4단계(용맹 눈썹 만들기·털 정리·비타민 섭취·정기 출석)",
-            aspect: "portrait",
-          }}
+        <Media
+          asset={hetsClub.heroImage}
+          sizes="(min-width: 768px) 60vw, 100vw"
+          className="rounded-2xl"
         />
       </DetailSection>
 
@@ -94,19 +90,22 @@ export default function HetsClubPage() {
             분배 기획(포토프롭 → 밀크글라스 → 티셔츠+키링)
           </li>
         </ul>
-        <ImagePlaceholder
-          slot={{
-            label: "굿즈 디렉션 예시",
-            note: "떡메모지(기본특전/디저트특전) · 스티커팩 · 티셔츠 · 밀크글라스",
-            aspect: "wide",
-          }}
-        />
-        <ImagePlaceholder
-          slot={{
-            label: "운영 현장 사진",
-            note: "카페 체리시(서울 마포구 와우산로 29다길 14) 팝업 현장",
-            aspect: "wide",
-          }}
+        <div className="grid grid-cols-2 gap-4">
+          <Media
+            asset={hetsClub.designProcessImage}
+            sizes="(min-width: 768px) 30vw, 50vw"
+            className="rounded-2xl"
+          />
+          <Media
+            asset={hetsClub.conceptImage}
+            sizes="(min-width: 768px) 30vw, 50vw"
+            className="rounded-2xl"
+          />
+        </div>
+        <Media
+          asset={hetsClub.onSiteImage}
+          sizes="(min-width: 768px) 60vw, 100vw"
+          className="rounded-2xl"
         />
       </DetailSection>
 

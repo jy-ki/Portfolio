@@ -1,35 +1,73 @@
 import Link from "next/link";
 import { StatBadge } from "@/components/StatBadge";
-import type { SelectedWorkProject } from "@/data/projects";
+import type { ProjectBase } from "@/data/projects";
+import { cn } from "@/lib/cn";
 
-export function DetailHeader({ project }: { project: SelectedWorkProject }) {
+export function DetailHeader({
+  project,
+  tone = "light",
+}: {
+  project: ProjectBase;
+  tone?: "light" | "dark";
+}) {
+  const dark = tone === "dark";
+
   return (
     <header className="mx-auto max-w-3xl px-6 pt-32 pb-16 sm:px-8 sm:pt-40">
       <Link
         href="/#work"
-        className="text-xs font-semibold tracking-wide text-ink/50 hover:text-coral"
+        className={cn(
+          "text-xs font-semibold tracking-wide hover:text-coral",
+          dark ? "text-ivory/50" : "text-ink/50"
+        )}
       >
         ← 전체 프로젝트
       </Link>
 
-      <p className="mt-8 text-xs font-semibold tracking-[0.2em] text-coral">
+      <p
+        className={cn(
+          "mt-8 text-xs font-semibold tracking-[0.2em]",
+          dark ? "text-lilac" : "text-coral"
+        )}
+      >
         {project.eyebrow}
       </p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+      <h1
+        className={cn(
+          "mt-3 text-4xl font-bold tracking-tight sm:text-5xl",
+          dark ? "text-ivory" : "text-ink"
+        )}
+      >
         {project.title}
       </h1>
-      <p className="mt-3 text-lg text-ink/60">{project.subtitle}</p>
-      <p className="mt-6 text-lg leading-relaxed text-ink/80">
+      <p className={cn("mt-3 text-lg", dark ? "text-ivory/60" : "text-ink/60")}>
+        {project.subtitle}
+      </p>
+      <p
+        className={cn(
+          "mt-6 text-lg leading-relaxed",
+          dark ? "text-ivory/80" : "text-ink/80"
+        )}
+      >
         {project.concept}
       </p>
 
-      <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-2 text-sm text-ink/60">
+      <dl
+        className={cn(
+          "mt-8 flex flex-wrap gap-x-10 gap-y-2 text-sm",
+          dark ? "text-ivory/60" : "text-ink/60"
+        )}
+      >
         <div>
-          <dt className="font-medium text-ink/40">역할</dt>
+          <dt className={cn("font-medium", dark ? "text-ivory/40" : "text-ink/40")}>
+            역할
+          </dt>
           <dd>{project.role}</dd>
         </div>
         <div>
-          <dt className="font-medium text-ink/40">기간</dt>
+          <dt className={cn("font-medium", dark ? "text-ivory/40" : "text-ink/40")}>
+            기간
+          </dt>
           <dd>{project.period}</dd>
         </div>
       </dl>

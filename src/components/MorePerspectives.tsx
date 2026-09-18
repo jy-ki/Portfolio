@@ -15,8 +15,8 @@ export function MorePerspectives() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {morePerspectives.map((project, index) => (
-            <ScrollReveal key={project.title} delay={index * 80}>
+          {morePerspectives.map((project) => (
+            <ScrollReveal key={project.title}>
               <article className="flex h-full flex-col gap-4 rounded-2xl border border-ink/10 bg-white/40 p-7">
                 <div>
                   <h3 className="text-xl font-bold text-ink">{project.title}</h3>

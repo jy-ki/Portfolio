@@ -3,7 +3,7 @@
 :root {
   --color-ivory: #f7f4ef;
   --color-ink: #202334;
-  --color-coral: #f47555;
+  --color-coral: #ff6b3d;
   --color-peach: #f6c7af;
   --color-lilac: #c9c2ea;
 
@@ -27,6 +27,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* A section that flips the palette (deep ink bg, ivory text) to break the
+   page's rhythm — used once, around the 2025 제국 기록부 scene. */
+.section-dark {
+  --background: var(--color-ink);
+  --foreground: var(--color-ivory);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.hero-headline {
+  font-size: clamp(2.75rem, 4.5vw + 1.5rem, 6.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 /* Liquid glass surface: used only for nav, tab groups, and short info panels. */
@@ -77,8 +92,16 @@ body {
     box-shadow: none !important;
   }
 
-  body {
+  body,
+  .section-dark {
     background: #ffffff !important;
     color: #000000 !important;
+  }
+
+  /* Utility text/border color classes (text-ivory/*, border-ivory/*, etc.)
+     otherwise win over the inherited color above — flatten them too. */
+  .section-dark * {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
   }
 }

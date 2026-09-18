@@ -1,3 +1,5 @@
+import { photo, placeholder, type ImageAsset } from "@/data/media";
+
 export type ResultTag = "measured" | "estimated" | "target" | "expected";
 
 export const resultTagLabel: Record<ResultTag, string> = {
@@ -12,13 +14,7 @@ export type ProjectResult = {
   text: string;
 };
 
-export type ImageSlot = {
-  label: string;
-  note?: string;
-  aspect?: "wide" | "square" | "portrait";
-};
-
-export type SelectedWorkProject = {
+export type ProjectBase = {
   slug: string;
   eyebrow: string;
   title: string;
@@ -27,97 +23,121 @@ export type SelectedWorkProject = {
   role: string;
   period: string;
   results: ProjectResult[];
-  cardImages: ImageSlot[];
-  size: "large" | "medium";
 };
 
-export const selectedWork: SelectedWorkProject[] = [
-  {
-    slug: "hets-club",
-    eyebrow: "PROJECT 01 · 온·오프라인 팬덤 콘텐츠 기획",
-    title: "HET’S CLUB",
-    subtitle: "도베르만이 되고 싶은 말티즈 PT 선생님의 큐티 헬스클럽",
-    concept:
-      "팬덤의 취향과 아티스트의 캐릭터를 해석해 하나의 콘셉트로 만들고, SNS 티저·굿즈·현장 경험·후기 이벤트로 전개했습니다.",
-    role: "콘텐츠 기획 총괄 (팀 프로젝트)",
-    period: "2025.03 – 2025.12 · 운영 2025.06.13 – 06.15",
-    results: [
-      { tag: "measured", text: "3일간 특전 300개 전량 솔드아웃" },
-      { tag: "estimated", text: "방문자 300명 이상 추정" },
-      { tag: "measured", text: "마지막 날 디저트 특전 1시간 이내 완판" },
-    ],
-    cardImages: [
-      {
-        label: "HET’S CLUB 메인 포스터",
-        note: "캐릭터 정면 + “도베르만이 되는 법” 안내문 4단계",
-        aspect: "portrait",
-      },
-      {
-        label: "굿즈 플랫레이",
-        note: "떡메모지 · 스티커팩 · 티셔츠 · 밀크글라스",
-        aspect: "wide",
-      },
-      { label: "운영 현장 사진", note: "카페 체리시 팝업 현장", aspect: "wide" },
-    ],
-    size: "large",
-  },
-  {
-    slug: "fandom-mapper",
-    eyebrow: "PROJECT 02 · K-POP 팬덤 × 브랜드 매칭 기획",
-    title: "Fandom.Mapper",
-    subtitle: "팬덤의 규모보다 소비 성향에 주목한 브랜드 매칭 기획",
-    concept:
-      "팬덤 반응 데이터를 분석해 8개 소비 페르소나로 분류하고, 27명 아티스트와 브랜드를 가중치 기반으로 매칭하는 대시보드를 설계했습니다.",
-    role: "개인 프로젝트 · 기획·데이터·프론트엔드 단독 수행",
-    period: "2026.04",
-    results: [
-      { tag: "measured", text: "팬덤 반응 데이터 14,850건 수집·정제" },
-      { tag: "measured", text: "8개 소비 페르소나 분류 체계 설계" },
-      { tag: "measured", text: "27명 아티스트 대상 매칭 대시보드 프로토타입 완성" },
-    ],
-    cardImages: [
-      {
-        label: "Fandom.Mapper 대시보드 화면",
-        note: "8개 페르소나 · 가중치 슬라이더",
-        aspect: "wide",
-      },
-      {
-        label: "BLOOM 시뮬레이션 결과 화면",
-        note: "가상 브랜드 매칭 Top 5 리스트",
-        aspect: "wide",
-      },
-    ],
-    size: "medium",
-  },
-  {
-    slug: "imperial-archive",
-    eyebrow: "PROJECT 03 · 참여형 연말 회고 콘텐츠",
-    title: "2025 제국 기록부",
-    subtitle: "개인의 이야기를 소장하고 공유할 수 있는 콘텐츠로 만든 참여형 경험",
-    concept:
-      "연말 회고 질문에 답하면 로맨스 판타지 세계관의 개인화된 서사와 이미지로 재구성해 저장·공유할 수 있게 만들었습니다.",
-    role: "개인 프로젝트 · 기획·프론트엔드·AI 프롬프트 설계 단독 수행",
-    period: "2025.12",
-    results: [
-      { tag: "measured", text: "질문 응답 → 3단계 루트 분기 서사 생성 시스템 구현" },
-      { tag: "measured", text: "결과를 고화질 이미지로 저장·공유하는 기능 구현" },
-      { tag: "expected", text: "고유 번호·동적 공유 문구로 SNS 공유 유도 설계" },
-    ],
-    cardImages: [
-      {
-        label: "제국 기록부 결과 화면",
-        note: "개인화된 서사 + 인장 이미지",
-        aspect: "portrait",
-      },
-      {
-        label: "황실 기록지 컨셉 UI",
-        note: "다크 배경(#0d0907) + 금색 포인트(#D4AF37)",
-        aspect: "wide",
-      },
-    ],
-    size: "medium",
-  },
-];
+export const hetsClub: ProjectBase & {
+  heroImage: ImageAsset;
+  onSiteImage: ImageAsset;
+  conceptImage: ImageAsset;
+  designProcessImage: ImageAsset;
+} = {
+  slug: "hets-club",
+  eyebrow: "PROJECT 01 · 온·오프라인 팬덤 콘텐츠 기획",
+  title: "HET’S CLUB",
+  subtitle: "도베르만이 되고 싶은 말티즈 PT 선생님의 큐티 헬스클럽",
+  concept:
+    "팬덤의 취향과 아티스트의 캐릭터를 해석해 하나의 콘셉트로 만들고, SNS 티저·굿즈·현장 경험·후기 이벤트로 전개했습니다.",
+  role: "콘텐츠 기획 총괄 (팀 프로젝트)",
+  period: "2025.03 – 2025.12 · 운영 2025.06.13 – 06.15",
+  results: [
+    { tag: "measured", text: "3일간 특전 300개 전량 솔드아웃" },
+    { tag: "estimated", text: "방문자 300명 이상 추정" },
+    { tag: "measured", text: "마지막 날 디저트 특전 1시간 이내 완판" },
+  ],
+  heroImage: photo(
+    "/work/hets-club/campaign-poster.webp",
+    "HET’S CLUB 캠페인 포스터 — 기본특전·디저트특전·선착특전 구성",
+    724,
+    953
+  ),
+  onSiteImage: photo(
+    "/work/hets-club/goods-display.webp",
+    "운영 현장 진열대 — 특전 음료와 캐릭터 쿠키, 포스터",
+    669,
+    663
+  ),
+  conceptImage: photo(
+    "/work/hets-club/concept-detail.webp",
+    "컨셉이 일상으로 확장된 사례 — “오늘의 운동 시간” 메모와 굿즈",
+    741,
+    737
+  ),
+  designProcessImage: photo(
+    "/work/hets-club/design-process.webp",
+    "기획자의 디자인 디렉션 데스크 — 초안 스케치와 레퍼런스",
+    736,
+    759
+  ),
+};
+
+export const fandomMapper: ProjectBase & {
+  dashboardImage: ImageAsset;
+  simulationImage: ImageAsset;
+  dataPoints: { value: string; label: string }[];
+} = {
+  slug: "fandom-mapper",
+  eyebrow: "PROJECT 02 · K-POP 팬덤 × 브랜드 매칭 기획",
+  title: "Fandom.Mapper",
+  subtitle: "팬덤의 규모보다 소비 성향에 주목한 브랜드 매칭 기획",
+  concept:
+    "팬덤 반응 데이터를 분석해 8개 소비 페르소나로 분류하고, 27명 아티스트와 브랜드를 가중치 기반으로 매칭하는 대시보드를 설계했습니다.",
+  role: "개인 프로젝트 · 기획·데이터·프론트엔드 단독 수행",
+  period: "2026.04",
+  results: [
+    { tag: "measured", text: "팬덤 반응 데이터 14,850건 수집·정제" },
+    { tag: "measured", text: "8개 소비 페르소나 분류 체계 설계" },
+    { tag: "measured", text: "27명 아티스트 대상 매칭 대시보드 프로토타입 완성" },
+  ],
+  dashboardImage: placeholder(
+    "Fandom.Mapper 대시보드 화면",
+    "16:9",
+    "8개 페르소나 분류 + 가중치 슬라이더 UI 전체 화면"
+  ),
+  simulationImage: placeholder(
+    "BLOOM 시뮬레이션 결과 화면",
+    "4:3",
+    "가상 브랜드 매칭 Top 5 아티스트 리스트"
+  ),
+  dataPoints: [
+    { value: "14,850건", label: "수집·정제한 팬덤 반응 데이터" },
+    { value: "8개", label: "설계한 소비 페르소나" },
+    { value: "27명", label: "매칭 대상 아티스트" },
+    { value: "<100ms", label: "가중평균 랭킹 연산 목표" },
+  ],
+};
+
+export const imperialArchive: ProjectBase & {
+  heroImage: ImageAsset;
+  uiImage: ImageAsset;
+  accent: string;
+} = {
+  slug: "imperial-archive",
+  eyebrow: "PROJECT 03 · 참여형 연말 회고 콘텐츠",
+  title: "2025 제국 기록부",
+  subtitle: "개인의 이야기를 소장하고 공유할 수 있는 콘텐츠로 만든 참여형 경험",
+  concept:
+    "연말 회고 질문에 답하면 로맨스 판타지 세계관의 개인화된 서사와 이미지로 재구성해 저장·공유할 수 있게 만들었습니다.",
+  role: "개인 프로젝트 · 기획·프론트엔드·AI 프롬프트 설계 단독 수행",
+  period: "2025.12",
+  results: [
+    { tag: "measured", text: "질문 응답 → 3단계 루트 분기 서사 생성 시스템 구현" },
+    { tag: "measured", text: "결과를 고화질 이미지로 저장·공유하는 기능 구현" },
+    { tag: "expected", text: "고유 번호·동적 공유 문구로 SNS 공유 유도 설계" },
+  ],
+  heroImage: placeholder(
+    "제국 기록부 결과 화면",
+    "3:4",
+    "개인화된 서사 + 인장 이미지 + 고유 번호"
+  ),
+  uiImage: placeholder(
+    "황실 기록지 컨셉 UI",
+    "16:9",
+    "다크 배경(#0d0907) + 금색 포인트(#D4AF37) 톤앤매너"
+  ),
+  accent: "#d4af37",
+};
+
+export const selectedWork: ProjectBase[] = [hetsClub, fandomMapper, imperialArchive];
 
 export type PerspectiveProject = {
   title: string;

@@ -2,20 +2,18 @@ import type { Metadata } from "next";
 import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { selectedWork } from "@/data/projects";
-
-const project = selectedWork.find((item) => item.slug === "fandom-mapper")!;
+import { Media } from "@/components/Media";
+import { fandomMapper } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Fandom.Mapper — 김지영 포트폴리오",
-  description: project.concept,
+  description: fandomMapper.concept,
 };
 
 export default function FandomMapperPage() {
   return (
     <DetailPageShell>
-      <DetailHeader project={project} />
+      <DetailHeader project={fandomMapper} />
 
       <DetailSection step="01" title="기획 질문">
         <p>
@@ -75,12 +73,10 @@ export default function FandomMapperPage() {
           설계해, B2C 참여 데이터가 다시 B2B 매칭 정확도를 높이는 양면시장
           구조를 기획했습니다.
         </p>
-        <ImagePlaceholder
-          slot={{
-            label: "Fandom.Mapper 대시보드 화면",
-            note: "8개 페르소나 분류 + 가중치 슬라이더 UI",
-            aspect: "wide",
-          }}
+        <Media
+          asset={fandomMapper.dashboardImage}
+          sizes="(min-width: 768px) 60vw, 100vw"
+          className="rounded-2xl"
         />
       </DetailSection>
 
@@ -118,12 +114,10 @@ export default function FandomMapperPage() {
           성과 검증은 아직 진행하지 않았고, 파일럿 광고주 유치는 다음 단계
           (Phase 2)의 목표로 남아 있습니다.
         </p>
-        <ImagePlaceholder
-          slot={{
-            label: "BLOOM 시뮬레이션 결과 화면",
-            note: "가상 브랜드 매칭 Top 5 아티스트 리스트",
-            aspect: "wide",
-          }}
+        <Media
+          asset={fandomMapper.simulationImage}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="rounded-2xl"
         />
       </DetailSection>
     </DetailPageShell>

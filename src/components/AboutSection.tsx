@@ -48,8 +48,8 @@ export function AboutSection() {
         </h2>
 
         <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-3">
-          {perspectives.map((item, index) => (
-            <ScrollReveal key={item.title} delay={index * 100}>
+          {perspectives.map((item) => (
+            <ScrollReveal key={item.title}>
               <div className="flex h-full flex-col gap-4">
                 <p className="text-xs font-semibold tracking-[0.15em] text-coral">
                   {item.englishLabel}

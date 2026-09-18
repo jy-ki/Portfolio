@@ -2,29 +2,27 @@ import type { Metadata } from "next";
 import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { selectedWork } from "@/data/projects";
-
-const project = selectedWork.find((item) => item.slug === "imperial-archive")!;
+import { Media } from "@/components/Media";
+import { imperialArchive } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "2025 제국 기록부 — 김지영 포트폴리오",
-  description: project.concept,
+  description: imperialArchive.concept,
 };
 
 export default function ImperialArchivePage() {
   return (
-    <DetailPageShell>
-      <DetailHeader project={project} />
+    <DetailPageShell tone="dark">
+      <DetailHeader project={imperialArchive} tone="dark" />
 
-      <DetailSection step="01" title="기획 질문">
+      <DetailSection step="01" title="기획 질문" tone="dark">
         <p>
           누구나 하는 “연말 회고”를, 소장하고 공유하고 싶어지는 특별한
           경험으로 만들려면 어떻게 해야 할까?
         </p>
       </DetailSection>
 
-      <DetailSection step="02" title="발견한 인사이트">
+      <DetailSection step="02" title="발견한 인사이트" tone="dark">
         <ul className="list-disc pl-5">
           <li>기존 연말 회고 서비스는 대부분 획일적인 질문·결과 형식에 머무릅니다.</li>
           <li>개인의 성취를 의미 있게 재해석해주는 서비스가 부재했습니다.</li>
@@ -32,7 +30,7 @@ export default function ImperialArchivePage() {
         </ul>
       </DetailSection>
 
-      <DetailSection step="03" title="선택한 전략과 이유">
+      <DetailSection step="03" title="선택한 전략과 이유" tone="dark">
         <p>
           답변을 로맨스 판타지 소설의 한 장면처럼 재구성하는 “제국 기록부”
           세계관을 채택했습니다. 성취도에 따라 임페리얼 황가(최고 등급) ·
@@ -50,9 +48,15 @@ export default function ImperialArchivePage() {
           달라지는 공유 문구와 “고유 번호” 같은 희소성 장치를 설계에
           포함시켰습니다.
         </p>
+        <Media
+          asset={imperialArchive.uiImage}
+          tone="dark"
+          sizes="(min-width: 768px) 60vw, 100vw"
+          className="rounded-2xl"
+        />
       </DetailSection>
 
-      <DetailSection step="04" title="내가 맡은 실행">
+      <DetailSection step="04" title="내가 맡은 실행" tone="dark">
         <TeamRoleNote>
           개인 프로젝트로 기획·프론트엔드·AI 프롬프트 설계를 단독으로
           수행했습니다.
@@ -79,24 +83,16 @@ export default function ImperialArchivePage() {
             톤앤매너 디자인
           </li>
         </ul>
-        <ImagePlaceholder
-          slot={{
-            label: "제국 기록부 결과 화면",
-            note: "개인화된 서사 + 인장 이미지 + 고유 번호",
-            aspect: "portrait",
-          }}
-        />
-        <ImagePlaceholder
-          slot={{
-            label: "황실 기록지 컨셉 UI",
-            note: "다크 배경(#0d0907) + 금색 포인트(#D4AF37) 톤앤매너",
-            aspect: "wide",
-          }}
+        <Media
+          asset={imperialArchive.heroImage}
+          tone="dark"
+          sizes="(min-width: 768px) 45vw, 100vw"
+          className="rounded-2xl"
         />
       </DetailSection>
 
-      <DetailSection step="05" title="결과와 한계">
-        <p className="font-semibold text-ink">구현 완료</p>
+      <DetailSection step="05" title="결과와 한계" tone="dark">
+        <p className="font-semibold text-ivory">구현 완료</p>
         <ul className="list-disc pl-5">
           <li>질문 응답 → 3단계 루트 분기 서사 생성 시스템</li>
           <li>결과를 고화질 이미지로 저장하는 기능</li>

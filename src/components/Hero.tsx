@@ -7,6 +7,8 @@ import { Magnetic } from "@/components/Magnetic";
 import { WindowChrome } from "@/components/WindowChrome";
 import { Tag } from "@/components/Tag";
 import { PolaroidPhoto } from "@/components/PolaroidPhoto";
+import { Blob } from "@/components/Blob";
+import { RotatingBadge } from "@/components/RotatingBadge";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { hetsClub } from "@/data/projects";
 
@@ -14,11 +16,15 @@ function Sticker({
   children,
   delay,
   reducedMotion,
+  float = 14,
+  duration = 3.6,
   className,
 }: {
   children: React.ReactNode;
   delay: number;
   reducedMotion: boolean;
+  float?: number;
+  duration?: number;
   className?: string;
 }) {
   if (reducedMotion) {
@@ -33,9 +39,9 @@ function Sticker({
       transition={{ type: "spring", stiffness: 220, damping: 16, delay }}
     >
       <motion.div
-        animate={{ y: [0, -10, 0] }}
+        animate={{ y: [0, -float, 0] }}
         transition={{
-          duration: 4.5,
+          duration,
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay + 0.6,
@@ -81,104 +87,127 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="paper-grid relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-ivory px-6 pb-16 pt-28 sm:px-12"
+      className="paper-grid relative overflow-hidden bg-ivory px-6 pb-20 pt-28 sm:px-12"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-        <div>
-          <WindowChrome label="김지영 · PORTFOLIO" className="mb-8" />
+      <div className="relative z-20 mx-auto max-w-6xl">
+        <WindowChrome label="김지영 · PORTFOLIO" className="mb-8" />
 
-          <h1 className="hero-headline display-heading text-ink">
-            <MaskReveal index={0}>취향을 읽고,</MaskReveal>
-            <MaskReveal index={1}>참여하고 싶은</MaskReveal>
-            <MaskReveal index={2}>경험을 만듭니다.</MaskReveal>
-          </h1>
+        <h1 className="hero-headline display-heading text-ink">
+          <MaskReveal index={0}>취향을 읽고,</MaskReveal>
+          <MaskReveal index={1}>참여하고 싶은</MaskReveal>
+          <MaskReveal index={2}>경험을 만듭니다.</MaskReveal>
+        </h1>
 
-          <motion.p
-            initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
-            animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 max-w-md text-base leading-relaxed text-ink/70 sm:text-lg"
-          >
-            소비자를 관찰하고, 인사이트를 콘셉트로 묶고, 콘텐츠와 경험으로
-            만들어 반응을 확인하는 과정을 프로젝트마다 거쳤습니다.
-          </motion.p>
+        <motion.p
+          initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
+          animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 max-w-md text-base leading-relaxed text-ink/70 sm:text-lg"
+        >
+          소비자를 관찰하고, 인사이트를 콘셉트로 묶고, 콘텐츠와 경험으로
+          만들어 반응을 확인하는 과정을 프로젝트마다 거쳤습니다.
+        </motion.p>
 
-          <motion.div
-            initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
-            animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
-            <Magnetic className="inline-block">
-              <Link
-                href="#work"
-                data-cursor="link"
-                className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-ivory transition-colors hover:bg-blue"
+        <motion.div
+          initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
+          animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <Magnetic className="inline-block">
+            <Link
+              href="#work"
+              data-cursor="link"
+              className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-ivory transition-colors hover:bg-blue"
+            >
+              프로젝트 보기
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-0 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                프로젝트 보기
-                <svg
-                  aria-hidden
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-0 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </Link>
-            </Magnetic>
-            <Tag index={0}>브랜드 마케팅</Tag>
-            <Tag index={2}>콘텐츠 기획</Tag>
-          </motion.div>
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </Magnetic>
+          <Tag index={0}>브랜드 마케팅</Tag>
+          <Tag index={2}>콘텐츠 기획</Tag>
+        </motion.div>
+      </div>
+
+      {/* Layered graphic collage — bleeds off the right edge and overlaps
+          the headline's empty upper-right space, like the reference
+          sites' photo-over-type compositions. Desktop only. */}
+      <div className="pointer-events-none absolute -right-[6%] top-28 z-10 hidden h-[420px] w-[30vw] max-w-[460px] lg:block">
+        <Blob
+          color="bg-sky"
+          className="absolute -left-10 top-10 h-64 w-64 opacity-90"
+        />
+
+        <Sticker
+          delay={0.5}
+          reducedMotion={reducedMotion}
+          float={16}
+          duration={3.8}
+          className="absolute right-2 top-0 w-[62%] rotate-[4deg]"
+        >
+          <PolaroidPhoto asset={hetsClub.heroImage} rotate={4} sizes="30vw" />
+        </Sticker>
+
+        <Sticker
+          delay={0.8}
+          reducedMotion={reducedMotion}
+          float={12}
+          className="absolute left-0 top-[4%] -rotate-6"
+        >
+          <Tag index={1} className="px-4 py-2 text-sm shadow-md">
+            HET&rsquo;S CLUB
+          </Tag>
+        </Sticker>
+
+        <Sticker
+          delay={0.95}
+          reducedMotion={reducedMotion}
+          float={18}
+          duration={4.2}
+          className="absolute bottom-[26%] left-[2%] rotate-3"
+        >
+          <Tag index={3} className="px-4 py-2 text-sm shadow-md">
+            #팬덤_기획
+          </Tag>
+        </Sticker>
+
+        <Sticker
+          delay={1.1}
+          reducedMotion={reducedMotion}
+          float={10}
+          className="absolute bottom-4 right-[20%]"
+        >
+          <RotatingBadge
+            text="김지영 · BRAND MARKETER · "
+            center={
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm text-ivory">
+                ↗
+              </span>
+            }
+            className="h-20 w-20 drop-shadow-md"
+          />
+        </Sticker>
+
+        <div className="absolute bottom-[6%] left-[30%]">
+          <DoodleArrow reducedMotion={reducedMotion} />
         </div>
+      </div>
 
-        {/* Flat graphic collage — one real campaign photo plus sticker
-            tags and a hand-drawn arrow, popping in and idling gently. */}
-        <div className="relative hidden aspect-square w-full lg:block">
-          <Sticker
-            delay={0.5}
-            reducedMotion={reducedMotion}
-            className="absolute right-2 top-0 w-[58%] rotate-[4deg]"
-          >
-            <PolaroidPhoto asset={hetsClub.heroImage} rotate={4} sizes="30vw" />
-          </Sticker>
-
-          <Sticker
-            delay={0.8}
-            reducedMotion={reducedMotion}
-            className="absolute left-0 top-[8%] -rotate-6"
-          >
-            <Tag index={1} className="px-4 py-2 text-sm shadow-md">
-              HET&rsquo;S CLUB
-            </Tag>
-          </Sticker>
-
-          <Sticker
-            delay={0.95}
-            reducedMotion={reducedMotion}
-            className="absolute bottom-[22%] left-[6%] rotate-3"
-          >
-            <Tag index={3} className="px-4 py-2 text-sm shadow-md">
-              #팬덤_기획
-            </Tag>
-          </Sticker>
-
-          <Sticker
-            delay={1.1}
-            reducedMotion={reducedMotion}
-            className="absolute bottom-2 right-[16%]"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue text-2xl shadow-md">
-              🎯
-            </div>
-          </Sticker>
-
-          <div className="absolute bottom-[10%] left-[34%]">
-            <DoodleArrow reducedMotion={reducedMotion} />
-          </div>
+      {/* Mobile: one photo, no overlap gymnastics. */}
+      <div className="relative z-10 mt-12 px-6 sm:px-12 lg:hidden">
+        <div className="mx-auto max-w-xs overflow-hidden rounded-2xl shadow-xl">
+          <PolaroidPhoto asset={hetsClub.heroImage} rotate={-1.5} sizes="90vw" />
         </div>
       </div>
     </section>

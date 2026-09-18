@@ -21,15 +21,15 @@ export function DetailSection({
         <p
           className={cn(
             "text-xs font-semibold tracking-[0.2em]",
-            dark ? "text-lilac" : "text-coral"
+            dark ? "text-gold" : "text-blue"
           )}
         >
           {step}
         </p>
         <h2
           className={cn(
-            "mt-2 text-2xl font-bold tracking-tight sm:text-3xl",
-            dark ? "text-ivory" : "text-ink"
+            "display-heading mt-2 text-2xl sm:text-3xl",
+            dark ? "text-[#f3efe6]" : "text-ink"
           )}
         >
           {title}
@@ -37,7 +37,7 @@ export function DetailSection({
         <div
           className={cn(
             "mt-6 flex flex-col gap-4 text-base leading-relaxed",
-            dark ? "text-ivory/80" : "text-ink/80"
+            dark ? "text-[#f3efe6]/80" : "text-ink/80"
           )}
         >
           {children}

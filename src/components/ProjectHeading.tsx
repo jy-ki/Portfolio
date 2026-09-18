@@ -1,4 +1,5 @@
 import type { ProjectBase } from "@/data/projects";
+import { WindowChrome } from "@/components/WindowChrome";
 import { cn } from "@/lib/cn";
 
 export function ProjectHeading({
@@ -13,11 +14,12 @@ export function ProjectHeading({
   return (
     <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
+        <WindowChrome label={`PROJECT ${number}`} tone={tone} className="mb-5" />
         <span
           aria-hidden
           className={cn(
             "block text-7xl font-black leading-none sm:text-8xl",
-            tone === "dark" ? "text-ivory/10" : "text-ink/8"
+            tone === "dark" ? "text-[#f3efe6]/10" : "text-ink/8"
           )}
         >
           {number}
@@ -25,15 +27,15 @@ export function ProjectHeading({
         <p
           className={cn(
             "mt-2 text-xs font-semibold tracking-[0.2em]",
-            tone === "dark" ? "text-lilac" : "text-coral"
+            tone === "dark" ? "text-gold" : "text-blue"
           )}
         >
           {project.eyebrow}
         </p>
         <h2
           className={cn(
-            "mt-3 text-4xl font-bold tracking-tight sm:text-5xl",
-            tone === "dark" ? "text-ivory" : "text-ink"
+            "display-heading mt-3 text-4xl sm:text-5xl",
+            tone === "dark" ? "text-[#f3efe6]" : "text-ink"
           )}
         >
           {project.title}
@@ -41,7 +43,7 @@ export function ProjectHeading({
         <p
           className={cn(
             "mt-2 max-w-md text-base",
-            tone === "dark" ? "text-ivory/55" : "text-ink/55"
+            tone === "dark" ? "text-[#f3efe6]/55" : "text-ink/55"
           )}
         >
           {project.subtitle}
@@ -51,7 +53,7 @@ export function ProjectHeading({
       <dl
         className={cn(
           "flex flex-wrap gap-x-8 gap-y-2 text-sm",
-          tone === "dark" ? "text-ivory/55" : "text-ink/55"
+          tone === "dark" ? "text-[#f3efe6]/55" : "text-ink/55"
         )}
       >
         <div>

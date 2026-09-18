@@ -1,50 +1,26 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Media } from "@/components/Media";
 import { HoverSwapImage } from "@/components/HoverSwapImage";
+import { PolaroidPhoto } from "@/components/PolaroidPhoto";
 import { ProjectHeading } from "@/components/ProjectHeading";
 import { ProjectResultsAndLink } from "@/components/ProjectResultsAndLink";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { hetsClub } from "@/data/projects";
 
-/**
- * Campaign-magazine layout on the project's own dark plum scene. As this
- * section scrolls into view, its background eases from the Hero's void
- * black into plum — the "scroll = scene changes" beat of the site's one
- * signature motion. Photo layout is unchanged from before; only the
- * surrounding color/type system moves to match the new direction.
- */
+/** Campaign-magazine layout on the site's shared cream system, with a
+ * pink accent as HET'S CLUB's own identifying color. */
 export function HetsClubShowcase() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const reducedMotion = usePrefersReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start 55%"],
-  });
-  const background = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["#0b0b10", "#241019"]
-  );
-
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ background: reducedMotion ? "#241019" : background }}
-      className="motion-scene px-6 py-24 text-bone sm:px-12"
-    >
+    <section className="paper-grid bg-ivory px-6 py-24 sm:px-12">
       <div className="mx-auto max-w-6xl">
-        <ProjectHeading number="01" project={hetsClub} tone="dark" />
+        <ProjectHeading number="01" project={hetsClub} />
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <Media
+            <PolaroidPhoto
               asset={hetsClub.heroImage}
+              rotate={-1.5}
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="rounded-3xl shadow-2xl"
+              className="shadow-2xl"
             />
           </div>
 
@@ -56,22 +32,22 @@ export function HetsClubShowcase() {
               className="shadow-lg"
             />
             <ScrollReveal>
-              <figure className="flex items-center gap-4 rounded-2xl border border-bone/15 p-4">
+              <figure className="flex items-center gap-4 rounded-2xl border border-pink bg-pink/25 p-4">
                 <div className="w-20 shrink-0 overflow-hidden rounded-xl">
                   <Media asset={hetsClub.designProcessImage} sizes="10vw" />
                 </div>
-                <figcaption className="text-xs leading-relaxed text-bone/55">
+                <figcaption className="text-xs leading-relaxed text-ink/65">
                   기획자가 직접 초안을 그리고 디렉션을 전달한 작업 데스크
                 </figcaption>
               </figure>
             </ScrollReveal>
 
             <ScrollReveal>
-              <ProjectResultsAndLink project={hetsClub} tone="dark" />
+              <ProjectResultsAndLink project={hetsClub} />
             </ScrollReveal>
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

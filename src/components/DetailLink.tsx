@@ -11,11 +11,12 @@ export function DetailLink({
   return (
     <Link
       href={`/work/${slug}`}
+      data-cursor="link"
       className={cn(
         "group inline-flex w-fit items-center gap-2 text-sm font-semibold underline decoration-2 underline-offset-4 transition-colors",
         tone === "dark"
-          ? "text-ivory decoration-lilac/60 hover:text-lilac"
-          : "text-ink decoration-coral/50 hover:text-coral"
+          ? "text-[#f3efe6] decoration-gold/60 hover:text-gold"
+          : "text-ink decoration-blue/50 hover:text-blue"
       )}
     >
       상세 보기

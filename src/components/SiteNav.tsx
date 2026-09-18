@@ -37,14 +37,21 @@ export function SiteNav() {
 
   return (
     <header className="no-print fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:px-8 sm:pt-6">
-      <nav className="glass-surface flex w-full max-w-5xl items-center justify-between rounded-full px-5 py-3 shadow-[0_8px_32px_-16px_rgba(32,35,52,0.25)] sm:px-7">
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-wide text-ink"
-          onClick={() => setMenuOpen(false)}
-        >
-          김지영
-        </Link>
+      <nav className="chrome-bar flex w-full max-w-5xl items-center justify-between rounded-full px-5 py-3 shadow-[0_8px_32px_-16px_rgba(23,21,15,0.25)] sm:px-7">
+        <div className="flex items-center gap-4">
+          <span className="hidden gap-1.5 sm:flex" aria-hidden>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#f4756b]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-butter" />
+            <span className="h-2.5 w-2.5 rounded-full bg-mint" />
+          </span>
+          <Link
+            href="/"
+            className="text-sm font-semibold tracking-wide text-ink"
+            onClick={() => setMenuOpen(false)}
+          >
+            김지영
+          </Link>
+        </div>
 
         <ul className="hidden items-center gap-8 sm:flex">
           {NAV_LINKS.map((link) => (
@@ -54,7 +61,7 @@ export function SiteNav() {
                 className={cn(
                   "text-sm font-medium transition-colors",
                   activeId === link.id
-                    ? "text-coral"
+                    ? "text-blue"
                     : "text-ink/70 hover:text-ink"
                 )}
               >
@@ -63,7 +70,7 @@ export function SiteNav() {
               <span
                 aria-hidden
                 className={cn(
-                  "absolute -bottom-1.5 left-0 h-[3px] w-full rounded-full bg-coral transition-transform duration-300 origin-left motion-reduce:transition-none",
+                  "absolute -bottom-1.5 left-0 h-[3px] w-full origin-left rounded-full bg-blue transition-transform duration-300 motion-reduce:transition-none",
                   activeId === link.id ? "scale-x-100" : "scale-x-0"
                 )}
               />
@@ -109,9 +116,7 @@ export function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className={cn(
                 "rounded-xl px-4 py-3 text-base font-medium transition-colors",
-                activeId === link.id
-                  ? "bg-coral/10 text-coral"
-                  : "text-ink/80"
+                activeId === link.id ? "bg-blue/10 text-blue" : "text-ink/80"
               )}
             >
               {link.label}

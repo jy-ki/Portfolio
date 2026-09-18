@@ -15,14 +15,19 @@ export function DetailPageShell({
   return (
     <>
       <SiteNav />
-      <main className={cn("pb-24", dark ? "section-dark" : "bg-ivory")}>
+      <main
+        className={cn(
+          "pb-24",
+          dark ? "section-dark" : "paper-grid bg-ivory"
+        )}
+      >
         {children}
         <div className="mx-auto max-w-3xl px-6 pt-8 sm:px-8">
           <Link
             href="/#work"
             className={cn(
-              "text-sm font-semibold hover:text-coral",
-              dark ? "text-ivory/60" : "text-ink/60"
+              "text-sm font-semibold hover:text-blue",
+              dark ? "text-[#f3efe6]/60" : "text-ink/60"
             )}
           >
             ← 다른 프로젝트 보기

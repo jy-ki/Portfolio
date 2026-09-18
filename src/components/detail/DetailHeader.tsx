@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { StatBadge } from "@/components/StatBadge";
+import { WindowChrome } from "@/components/WindowChrome";
 import type { ProjectBase } from "@/data/projects";
 import { cn } from "@/lib/cn";
 
@@ -17,36 +18,38 @@ export function DetailHeader({
       <Link
         href="/#work"
         className={cn(
-          "text-xs font-semibold tracking-wide hover:text-coral",
-          dark ? "text-ivory/50" : "text-ink/50"
+          "text-xs font-semibold tracking-wide hover:text-blue",
+          dark ? "text-[#f3efe6]/50" : "text-ink/50"
         )}
       >
         ← 전체 프로젝트
       </Link>
 
+      <WindowChrome label={project.title} tone={tone} className="mt-6 mb-6" />
+
       <p
         className={cn(
-          "mt-8 text-xs font-semibold tracking-[0.2em]",
-          dark ? "text-lilac" : "text-coral"
+          "text-xs font-semibold tracking-[0.2em]",
+          dark ? "text-gold" : "text-blue"
         )}
       >
         {project.eyebrow}
       </p>
       <h1
         className={cn(
-          "mt-3 text-4xl font-bold tracking-tight sm:text-5xl",
-          dark ? "text-ivory" : "text-ink"
+          "display-heading mt-3 text-4xl sm:text-5xl",
+          dark ? "text-[#f3efe6]" : "text-ink"
         )}
       >
         {project.title}
       </h1>
-      <p className={cn("mt-3 text-lg", dark ? "text-ivory/60" : "text-ink/60")}>
+      <p className={cn("mt-3 text-lg", dark ? "text-[#f3efe6]/60" : "text-ink/60")}>
         {project.subtitle}
       </p>
       <p
         className={cn(
           "mt-6 text-lg leading-relaxed",
-          dark ? "text-ivory/80" : "text-ink/80"
+          dark ? "text-[#f3efe6]/80" : "text-ink/80"
         )}
       >
         {project.concept}
@@ -55,17 +58,17 @@ export function DetailHeader({
       <dl
         className={cn(
           "mt-8 flex flex-wrap gap-x-10 gap-y-2 text-sm",
-          dark ? "text-ivory/60" : "text-ink/60"
+          dark ? "text-[#f3efe6]/60" : "text-ink/60"
         )}
       >
         <div>
-          <dt className={cn("font-medium", dark ? "text-ivory/40" : "text-ink/40")}>
+          <dt className={cn("font-medium", dark ? "text-[#f3efe6]/40" : "text-ink/40")}>
             역할
           </dt>
           <dd>{project.role}</dd>
         </div>
         <div>
-          <dt className={cn("font-medium", dark ? "text-ivory/40" : "text-ink/40")}>
+          <dt className={cn("font-medium", dark ? "text-[#f3efe6]/40" : "text-ink/40")}>
             기간
           </dt>
           <dd>{project.period}</dd>

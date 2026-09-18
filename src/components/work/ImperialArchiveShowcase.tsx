@@ -3,7 +3,8 @@ import { ProjectHeading } from "@/components/ProjectHeading";
 import { ProjectResultsAndLink } from "@/components/ProjectResultsAndLink";
 import { imperialArchive } from "@/data/projects";
 
-/** Immersive layout using the project's own dark, gold-accented palette. */
+/** The one deliberate dark scene — same chrome/type/tag system as every
+ * other section, just in 제국 기록부's own void + gold palette. */
 export function ImperialArchiveShowcase() {
   return (
     <section className="section-dark px-6 py-24 sm:px-12">
@@ -11,10 +12,7 @@ export function ImperialArchiveShowcase() {
         <ProjectHeading number="03" project={imperialArchive} tone="dark" />
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-          <div
-            className="relative rounded-2xl"
-            style={{ boxShadow: `0 0 0 1px ${imperialArchive.accent}40` }}
-          >
+          <div className="relative rounded-2xl border border-gold/30">
             <Media
               asset={imperialArchive.heroImage}
               tone="dark"

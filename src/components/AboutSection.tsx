@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Tag } from "@/components/Tag";
 
 const perspectives = [
   {
@@ -38,12 +39,12 @@ const toolGroups = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-ivory px-6 py-24 sm:px-12 sm:py-32">
+    <section id="about" className="paper-grid bg-ivory px-6 py-24 sm:px-12 sm:py-32">
       <div className="mx-auto max-w-5xl">
         <p className="text-xs font-semibold tracking-[0.2em] text-ink/40">
           ABOUT
         </p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+        <h2 className="display-heading mt-3 max-w-2xl text-3xl text-ink sm:text-4xl">
           관찰하고, 콘셉트로 묶고, 직접 구현합니다.
         </h2>
 
@@ -51,10 +52,10 @@ export function AboutSection() {
           {perspectives.map((item) => (
             <ScrollReveal key={item.title}>
               <div className="flex h-full flex-col gap-4">
-                <p className="text-xs font-semibold tracking-[0.15em] text-coral">
+                <p className="text-xs font-semibold tracking-[0.15em] text-blue">
                   {item.englishLabel}
                 </p>
-                <h3 className="text-2xl font-bold text-ink">{item.title}</h3>
+                <h3 className="text-2xl font-black text-ink">{item.title}</h3>
                 <p className="flex-1 text-sm leading-relaxed text-ink/75">
                   {item.body}
                 </p>
@@ -77,12 +78,9 @@ export function AboutSection() {
                   {group.label}
                 </h4>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {group.tools.map((tool) => (
-                    <li
-                      key={tool}
-                      className="rounded-full border border-ink/15 px-3 py-1 text-xs text-ink/70"
-                    >
-                      {tool}
+                  {group.tools.map((tool, index) => (
+                    <li key={tool}>
+                      <Tag index={index}>{tool}</Tag>
                     </li>
                   ))}
                 </ul>

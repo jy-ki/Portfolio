@@ -6,7 +6,7 @@ import { fandomMapper } from "@/data/projects";
 /** Data-forward layout: a wide dashboard shot, then the scale numbers, then the simulation. */
 export function FandomMapperShowcase() {
   return (
-    <section className="bg-ivory px-6 py-24 sm:px-12">
+    <section className="paper-grid bg-ivory px-6 py-24 sm:px-12">
       <div className="mx-auto max-w-6xl">
         <ProjectHeading number="02" project={fandomMapper} />
 
@@ -14,14 +14,14 @@ export function FandomMapperShowcase() {
           <Media
             asset={fandomMapper.dashboardImage}
             sizes="(min-width: 1024px) 80vw, 100vw"
-            className="rounded-2xl"
+            className="rounded-2xl border-2 border-ink/10"
           />
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-6 border-y border-ink/10 py-8 sm:grid-cols-4">
           {fandomMapper.dataPoints.map((point) => (
             <div key={point.label}>
-              <p className="text-3xl font-bold text-coral sm:text-4xl">
+              <p className="display-heading text-3xl text-blue sm:text-4xl">
                 {point.value}
               </p>
               <p className="mt-1 text-xs text-ink/55">{point.label}</p>

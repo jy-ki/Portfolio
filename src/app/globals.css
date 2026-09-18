@@ -7,6 +7,19 @@
   --color-peach: #f6c7af;
   --color-lilac: #c9c2ea;
 
+  /* Signature system for the motion-led redesign: a near-black stage,
+     warm-white type, and one saturated accent used sparingly (cursor,
+     3D material, interactive highlights). Not tied to any client's
+     brand colors — chosen for the portfolio's own character. */
+  --color-void: #0b0b10;
+  --color-bone: #f3efe6;
+  --color-signal: #8b5cf6;
+
+  /* HET'S CLUB gets its own dark accent, pulled from its own campaign
+     palette (warm pink/plum) rather than the site-wide signal color. */
+  --color-plum: #241019;
+  --color-bloom: #ff6fa0;
+
   --background: var(--color-ivory);
   --foreground: var(--color-ink);
 }
@@ -17,6 +30,11 @@
   --color-coral: var(--color-coral);
   --color-peach: var(--color-peach);
   --color-lilac: var(--color-lilac);
+  --color-void: var(--color-void);
+  --color-bone: var(--color-bone);
+  --color-signal: var(--color-signal);
+  --color-plum: var(--color-plum);
+  --color-bloom: var(--color-bloom);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system,
@@ -42,6 +60,21 @@ body {
   font-size: clamp(2.75rem, 4.5vw + 1.5rem, 6.7rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
+}
+
+/* Custom cursor: only ever active once JS confirms a fine pointer and no
+   reduced-motion preference, so touch/keyboard/reduced-motion users always
+   keep the native cursor. */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: auto !important;
+  }
 }
 
 /* Liquid glass surface: used only for nav, tab groups, and short info panels. */
@@ -101,6 +134,24 @@ body {
   /* Utility text/border color classes (text-ivory/*, border-ivory/*, etc.)
      otherwise win over the inherited color above — flatten them too. */
   .section-dark * {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* The 3D canvas is decorative only — drop it. The scroll-linked dark
+     scenes (Hero, HET'S CLUB entry) flatten to plain black-on-white like
+     .section-dark, overriding the inline background color the motion
+     library sets. */
+  canvas {
+    display: none !important;
+  }
+
+  .motion-scene {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .motion-scene * {
     color: #000000 !important;
     border-color: rgba(0, 0, 0, 0.2) !important;
   }

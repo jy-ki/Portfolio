@@ -10,7 +10,7 @@ import { hetsClub } from "@/data/projects";
  * pink accent as HET'S CLUB's own identifying color. */
 export function HetsClubShowcase() {
   return (
-    <section className="paper-grid bg-ivory px-6 py-24 sm:px-12">
+    <section id="hets-club" className="paper-grid bg-ivory px-6 py-24 sm:px-12">
       <div className="mx-auto max-w-6xl">
         <ProjectHeading number="01" project={hetsClub} />
 

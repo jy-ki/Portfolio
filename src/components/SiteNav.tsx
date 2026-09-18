@@ -36,8 +36,8 @@ export function SiteNav() {
   }, []);
 
   return (
-    <header className="no-print fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:px-8 sm:pt-6">
-      <nav className="chrome-bar flex w-full max-w-5xl items-center justify-between rounded-xl px-5 py-3 sm:px-7">
+    <header className="no-print fixed inset-x-0 top-0 z-50 flex justify-center px-6 pt-4 sm:px-8 sm:pt-6">
+      <nav className="chrome-bar flex w-full max-w-[1200px] items-center justify-between rounded-xl px-5 py-3 sm:px-7">
         <Link
           href="/"
           className="text-sm font-semibold tracking-wide text-ink"

@@ -17,6 +17,13 @@
   --color-void: #0f0e0a;
   --color-gold: #d4af37;
 
+  /* Hero-only palette (first draft) — a typography-as-graphic poster
+     treatment. Scoped to Hero alone; the rest of the site keeps the
+     ivory/ink/blue system above. */
+  --color-lilac-bg: #eae5f4;
+  --color-plum: #302238;
+  --color-lime: #d7f568;
+
   --background: var(--color-ivory);
   --foreground: var(--color-ink);
 }
@@ -31,6 +38,9 @@
   --color-butter: var(--color-butter);
   --color-void: var(--color-void);
   --color-gold: var(--color-gold);
+  --color-lilac-bg: var(--color-lilac-bg);
+  --color-plum: var(--color-plum);
+  --color-lime: var(--color-lime);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system,
@@ -60,12 +70,15 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* Tuned to land around 80-100px on typical 1440-1920px desktop
-   viewports, per design spec — not a raw "as big as possible" clamp. */
-.hero-headline {
-  font-size: clamp(2.5rem, 3.1vw + 2.5rem, 6.25rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+/* Hero's poster headline — two short lines, so it can run bigger than a
+   normal heading without overflowing. One weight step below
+   display-heading's 900, with tracking/leading tuned for a 2-word line
+   rather than a full sentence. */
+.poster-headline {
+  font-size: clamp(3.2rem, 7vw + 1rem, 9rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
 }
 
 /* Repeats on the real nav and as a decorative strip atop every section —

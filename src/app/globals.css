@@ -4,9 +4,9 @@
   /* One system, everywhere: warm paper cream + ink, a single cobalt
      accent, and a small rotating set of sticky-note pastels for tags.
      Every section reuses these — no per-section palette swaps. */
-  --color-ivory: #f6f1e3;
-  --color-ink: #17150f;
-  --color-blue: #2f58c9;
+  --color-ivory: #f5f2e8;
+  --color-ink: #191914;
+  --color-blue: #3155d9;
   --color-mint: #bfe8c8;
   --color-sky: #c7ddf6;
   --color-pink: #f4c9da;
@@ -60,10 +60,12 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* Tuned to land around 80-100px on typical 1440-1920px desktop
+   viewports, per design spec — not a raw "as big as possible" clamp. */
 .hero-headline {
-  font-size: clamp(2.85rem, 5.5vw + 1.5rem, 7.6rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 3.1vw + 2.5rem, 6.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 
 /* Repeats on the real nav and as a decorative strip atop every section —

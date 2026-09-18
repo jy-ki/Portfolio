@@ -37,21 +37,14 @@ export function SiteNav() {
 
   return (
     <header className="no-print fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:px-8 sm:pt-6">
-      <nav className="chrome-bar flex w-full max-w-5xl items-center justify-between rounded-full px-5 py-3 shadow-[0_8px_32px_-16px_rgba(23,21,15,0.25)] sm:px-7">
-        <div className="flex items-center gap-4">
-          <span className="hidden gap-1.5 sm:flex" aria-hidden>
-            <span className="h-2.5 w-2.5 rounded-full bg-[#f4756b]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-butter" />
-            <span className="h-2.5 w-2.5 rounded-full bg-mint" />
-          </span>
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-wide text-ink"
-            onClick={() => setMenuOpen(false)}
-          >
-            김지영
-          </Link>
-        </div>
+      <nav className="chrome-bar flex w-full max-w-5xl items-center justify-between rounded-xl px-5 py-3 sm:px-7">
+        <Link
+          href="/"
+          className="text-sm font-semibold tracking-wide text-ink"
+          onClick={() => setMenuOpen(false)}
+        >
+          김지영
+        </Link>
 
         <ul className="hidden items-center gap-8 sm:flex">
           {NAV_LINKS.map((link) => (
@@ -70,7 +63,7 @@ export function SiteNav() {
               <span
                 aria-hidden
                 className={cn(
-                  "absolute -bottom-1.5 left-0 h-[3px] w-full origin-left rounded-full bg-blue transition-transform duration-300 motion-reduce:transition-none",
+                  "absolute -bottom-1.5 left-0 h-[2px] w-full origin-left rounded-full bg-blue transition-transform duration-300 motion-reduce:transition-none",
                   activeId === link.id ? "scale-x-100" : "scale-x-0"
                 )}
               />
@@ -80,7 +73,7 @@ export function SiteNav() {
 
         <button
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-full text-ink sm:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-ink sm:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
           aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
@@ -107,7 +100,7 @@ export function SiteNav() {
       {menuOpen && (
         <div
           id="mobile-nav-panel"
-          className="glass-surface-strong absolute inset-x-4 top-[4.5rem] flex flex-col gap-1 rounded-3xl p-4 sm:hidden"
+          className="chrome-bar absolute inset-x-4 top-[4.2rem] flex flex-col gap-1 rounded-xl p-4 sm:hidden"
         >
           {NAV_LINKS.map((link) => (
             <Link
@@ -115,7 +108,7 @@ export function SiteNav() {
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className={cn(
-                "rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                "rounded-md px-4 py-3 text-base font-medium transition-colors",
                 activeId === link.id ? "bg-blue/10 text-blue" : "text-ink/80"
               )}
             >

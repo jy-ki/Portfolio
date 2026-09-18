@@ -28,11 +28,14 @@ import { cn } from "@/lib/cn";
 const CURVE_PATH = "M 33 24 C 54 32, 44 60, 72 79";
 
 /**
- * A quiet wireframe orb — three tilted rings in a shared 3D space, spun
- * slowly around one axis. Pure CSS (perspective + preserve-3d + a single
+ * A quiet wireframe orb — three tilted rings in a shared 3D space. The
+ * group turns slowly on one axis while each ring also spins on its own
+ * axis/speed/direction (one just gently rocks instead of spinning all
+ * the way around), so the shape keeps reshaping rather than reading as
+ * a single rigid block. Pure CSS (perspective + preserve-3d + the
  * @keyframes in globals.css), so the site-wide reduced-motion rule that
- * zeroes animation-duration freezes it for free — no JS branching needed
- * here the way the curve above requires.
+ * zeroes animation-duration freezes all of it for free — no JS branching
+ * needed here the way the curve above requires.
  */
 function WireframeOrb({ className }: { className?: string }) {
   return (
@@ -41,20 +44,17 @@ function WireframeOrb({ className }: { className?: string }) {
       className={cn("pointer-events-none [perspective:800px]", className)}
     >
       <div
-        className="relative h-full w-full animate-[orb-spin_30s_linear_infinite]"
+        className="relative h-full w-full animate-[orb-spin_34s_linear_infinite]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <span
-          className="absolute inset-0 rounded-full border border-plum/30"
-          style={{ transform: "rotateX(70deg)" }}
+          className="absolute inset-0 animate-[orb-ring-1_23s_linear_infinite] rounded-full border border-plum/30"
         />
         <span
-          className="absolute inset-0 rounded-full border border-lime/70"
-          style={{ transform: "rotateY(65deg) rotateX(15deg)" }}
+          className="absolute inset-0 animate-[orb-ring-2_17s_linear_infinite] rounded-full border border-lime/70"
         />
         <span
-          className="absolute inset-0 rounded-full border border-plum/20"
-          style={{ transform: "rotateX(20deg) rotateZ(55deg)" }}
+          className="absolute inset-0 animate-[orb-ring-3_7s_ease-in-out_infinite] rounded-full border border-plum/20"
         />
       </div>
     </div>

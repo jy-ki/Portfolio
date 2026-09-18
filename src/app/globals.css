@@ -118,15 +118,46 @@ body {
   color: var(--foreground);
 }
 
-/* Hero's center wireframe orb — a slow single-axis spin for the tilted
-   ring group. The reduced-motion rule below already collapses any CSS
-   animation's duration to near-zero, so this needs no separate handling. */
+/* Hero's center wireframe orb. The outer group turns slowly on one axis;
+   each of its three rings also spins on its own axis, speed and
+   direction, so the shape keeps reshaping instead of reading as one
+   rigid block rotating in place. The reduced-motion rule below already
+   collapses every animation's duration to near-zero, so this needs no
+   separate handling. */
 @keyframes orb-spin {
   from {
     transform: rotateY(0deg);
   }
   to {
     transform: rotateY(360deg);
+  }
+}
+
+@keyframes orb-ring-1 {
+  from {
+    transform: rotateX(70deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(70deg) rotateY(360deg);
+  }
+}
+
+@keyframes orb-ring-2 {
+  from {
+    transform: rotateY(65deg) rotateX(15deg);
+  }
+  to {
+    transform: rotateY(65deg) rotateX(375deg);
+  }
+}
+
+@keyframes orb-ring-3 {
+  0%,
+  100% {
+    transform: rotateX(20deg) rotateZ(55deg) rotateY(-24deg);
+  }
+  50% {
+    transform: rotateX(20deg) rotateZ(55deg) rotateY(24deg);
   }
 }
 

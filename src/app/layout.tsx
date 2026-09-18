@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import "pretendard/dist/web/variable/pretendardvariable.css";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal portfolio site",
+  title: "김지영 포트폴리오",
+  description:
+    "취향을 읽고, 참여하고 싶은 브랜드 경험으로 만드는 마케터 김지영의 포트폴리오.",
 };
 
 export default function RootLayout({
@@ -23,12 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="ko">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

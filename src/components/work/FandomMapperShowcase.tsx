@@ -1,9 +1,10 @@
 import { Media } from "@/components/Media";
 import { ProjectHeading } from "@/components/ProjectHeading";
 import { ProjectResultsAndLink } from "@/components/ProjectResultsAndLink";
+import { SitePreviewEmbed } from "@/components/SitePreviewEmbed";
 import { fandomMapper } from "@/data/projects";
 
-/** Data-forward layout: a wide dashboard shot, then the scale numbers, then the simulation. */
+/** Data-forward layout: a wide dashboard shot, then the scale numbers, then the landing shot — and a live embed of the actual deployed site. */
 export function FandomMapperShowcase() {
   return (
     <section className="paper-grid bg-ivory px-6 py-24 sm:px-12">
@@ -31,11 +32,18 @@ export function FandomMapperShowcase() {
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <Media
-            asset={fandomMapper.simulationImage}
+            asset={fandomMapper.landingImage}
             sizes="(min-width: 1024px) 40vw, 90vw"
             className="rounded-2xl"
           />
           <ProjectResultsAndLink project={fandomMapper} />
+        </div>
+
+        <div className="mt-14">
+          <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-ink/40">
+            LIVE PREVIEW
+          </p>
+          <SitePreviewEmbed href={fandomMapper.liveUrl} label="Fandom.Mapper" />
         </div>
       </div>
     </section>

@@ -92,21 +92,16 @@ export default function HetsClubPage() {
         </ul>
         <div className="grid grid-cols-2 gap-4">
           <Media
-            asset={hetsClub.designProcessImage}
+            asset={hetsClub.goodsImage1}
             sizes="(min-width: 768px) 30vw, 50vw"
             className="rounded-2xl"
           />
           <Media
-            asset={hetsClub.conceptImage}
+            asset={hetsClub.goodsImage2}
             sizes="(min-width: 768px) 30vw, 50vw"
             className="rounded-2xl"
           />
         </div>
-        <Media
-          asset={hetsClub.onSiteImage}
-          sizes="(min-width: 768px) 60vw, 100vw"
-          className="rounded-2xl"
-        />
       </DetailSection>
 
       <DetailSection step="05" title="결과와 한계">

@@ -27,9 +27,8 @@ export type ProjectBase = {
 
 export const hetsClub: ProjectBase & {
   heroImage: ImageAsset;
-  onSiteImage: ImageAsset;
-  conceptImage: ImageAsset;
-  designProcessImage: ImageAsset;
+  goodsImage1: ImageAsset;
+  goodsImage2: ImageAsset;
 } = {
   slug: "hets-club",
   eyebrow: "PROJECT 01 · 온·오프라인 팬덤 콘텐츠 기획",
@@ -45,35 +44,30 @@ export const hetsClub: ProjectBase & {
     { tag: "measured", text: "마지막 날 디저트 특전 1시간 이내 완판" },
   ],
   heroImage: photo(
-    "/work/hets-club/campaign-poster.webp",
-    "HET’S CLUB 캠페인 포스터 — 기본특전·디저트특전·선착특전 구성",
-    724,
-    953
+    "/work/hets-club/open-poster.jpg",
+    "HET’S CLUB OPEN 캠페인 포스터 — “도베르만이 되고 싶은 말티즈 PT 선생님” 컨셉 캐릭터와 도베르만이 되는 법 안내",
+    1422,
+    2000
   ),
-  onSiteImage: photo(
-    "/work/hets-club/goods-display.webp",
-    "운영 현장 진열대 — 특전 음료와 캐릭터 쿠키, 포스터",
-    669,
-    663
+  goodsImage1: photo(
+    "/work/hets-club/goods-guide.jpg",
+    "특전 굿즈 안내 — 티셔츠, 트레카 6종, 떡메모지, 키링, 밀크글라스, 스페셜 럭키드로우 구성",
+    1422,
+    2000
   ),
-  conceptImage: photo(
-    "/work/hets-club/concept-detail.webp",
-    "컨셉이 일상으로 확장된 사례 — “오늘의 운동 시간” 메모와 굿즈",
-    741,
-    737
-  ),
-  designProcessImage: photo(
-    "/work/hets-club/design-process.webp",
-    "기획자의 디자인 디렉션 데스크 — 초안 스케치와 레퍼런스",
-    736,
-    759
+  goodsImage2: photo(
+    "/work/hets-club/goods-detail.jpg",
+    "특전 상세 구성 — 기본특전(엽서·명함·스티커팩), 디저트특전(카톡테마·포토파우치), 선착특전(일자별 포토프롭·밀크글라스·티셔츠+키링)",
+    1422,
+    2000
   ),
 };
 
 export const fandomMapper: ProjectBase & {
   dashboardImage: ImageAsset;
-  simulationImage: ImageAsset;
+  landingImage: ImageAsset;
   dataPoints: { value: string; label: string }[];
+  liveUrl: string;
 } = {
   slug: "fandom-mapper",
   eyebrow: "PROJECT 02 · K-POP 팬덤 × 브랜드 매칭 기획",
@@ -88,15 +82,17 @@ export const fandomMapper: ProjectBase & {
     { tag: "measured", text: "8개 소비 페르소나 분류 체계 설계" },
     { tag: "measured", text: "27명 아티스트 대상 매칭 대시보드 프로토타입 완성" },
   ],
-  dashboardImage: placeholder(
-    "Fandom.Mapper 대시보드 화면",
-    "16:9",
-    "8개 페르소나 분류 + 가중치 슬라이더 UI 전체 화면"
+  dashboardImage: photo(
+    "/work/fandom-mapper/ranking-dashboard.png",
+    "Fandom.Mapper 매칭 랭킹 대시보드 — 타겟 가중치 슬라이더와 매칭 랭킹 TOP 10 스코어 화면",
+    1671,
+    870
   ),
-  simulationImage: placeholder(
-    "BLOOM 시뮬레이션 결과 화면",
-    "4:3",
-    "가상 브랜드 매칭 Top 5 아티스트 리스트"
+  landingImage: photo(
+    "/work/fandom-mapper/landing.webp",
+    "Fandom.Mapper 랜딩 페이지 — “Fan Data, Brand Power” 메인 화면과 8개 팬덤 페르소나 소개",
+    1660,
+    812
   ),
   dataPoints: [
     { value: "14,850건", label: "수집·정제한 팬덤 반응 데이터" },
@@ -104,12 +100,14 @@ export const fandomMapper: ProjectBase & {
     { value: "27명", label: "매칭 대상 아티스트" },
     { value: "<100ms", label: "가중평균 랭킹 연산 목표" },
   ],
+  liveUrl: "https://fandom-mapper.imweb.me/",
 };
 
 export const imperialArchive: ProjectBase & {
   heroImage: ImageAsset;
   uiImage: ImageAsset;
   accent: string;
+  liveUrl: string;
 } = {
   slug: "imperial-archive",
   eyebrow: "PROJECT 03 · 참여형 연말 회고 콘텐츠",
@@ -135,6 +133,7 @@ export const imperialArchive: ProjectBase & {
     "다크 배경(#0d0907) + 금색 포인트(#D4AF37) 톤앤매너"
   ),
   accent: "#d4af37",
+  liveUrl: "https://2025-imperial-archive.vercel.app/",
 };
 
 export const selectedWork: ProjectBase[] = [hetsClub, fandomMapper, imperialArchive];
@@ -145,7 +144,7 @@ export type PerspectiveProject = {
   summary: string;
   role: string;
   period: string;
-  link?: { label: string; href: string };
+  link?: { label: string; href: string; handle?: string };
 };
 
 export const morePerspectives: PerspectiveProject[] = [
@@ -173,7 +172,11 @@ export const morePerspectives: PerspectiveProject[] = [
       "세대 간 소통 단절을 잡지 매체로 풀어내는 콘셉트를 기획하고, 길거리·복지관 인터뷰부터 촬영·편집까지 총괄했습니다.",
     role: "PM · 디자인 · 콘텐츠 기획",
     period: "2024",
-    link: { label: "Instagram", href: "https://www.instagram.com/between_2060" },
+    link: {
+      label: "Instagram",
+      href: "https://www.instagram.com/between_2060",
+      handle: "@between_2060",
+    },
   },
 ];
 

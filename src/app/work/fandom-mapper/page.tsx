@@ -15,6 +15,14 @@ export default function FandomMapperPage() {
     <DetailPageShell>
       <DetailHeader project={fandomMapper} />
 
+      <div className="mx-auto max-w-3xl px-6 pb-4 sm:px-8">
+        <Media
+          asset={fandomMapper.landingImage}
+          sizes="(min-width: 768px) 60vw, 100vw"
+          className="rounded-2xl"
+        />
+      </div>
+
       <DetailSection step="01" title="기획 질문">
         <p>
           브랜드가 “왜 이 아티스트인가”를 데이터로 설명하지 못한 채 팔로워 수,
@@ -114,11 +122,6 @@ export default function FandomMapperPage() {
           성과 검증은 아직 진행하지 않았고, 파일럿 광고주 유치는 다음 단계
           (Phase 2)의 목표로 남아 있습니다.
         </p>
-        <Media
-          asset={fandomMapper.simulationImage}
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="rounded-2xl"
-        />
       </DetailSection>
     </DetailPageShell>
   );

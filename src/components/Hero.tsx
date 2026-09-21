@@ -4,14 +4,15 @@ import Link from "next/link";
 import { useRef, type PointerEvent } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { cn } from "@/lib/cn";
+import { HeroCharacter } from "@/components/HeroCharacter";
 
 /**
- * Typography-as-graphic Hero, v2: same lilac/plum/lime palette and copy as
- * before, now spread across the full 1200px grid instead of hugging the
- * left edge. "취향을" anchors the top-left, "경험으로." lands lower and
- * to the right, and a thin curve — drawn once, then walked by a slow dot
- * — is the only thing connecting the two. No photos, no extra decoration.
+ * Typography-as-graphic Hero, v3: same diagonal "취향을 / 경험으로." layout
+ * and connecting curve as before, now on the site's own warm ivory/ink
+ * system plus one orange accent (replacing the earlier Hero-only lilac/
+ * plum/lime palette), with a small code-drawn character illustration —
+ * sitting with a laptop, ringed by mood-board props — filling the open
+ * corridor where a wireframe orb used to sit.
  *
  * Motion note: `initial`/`animate` targets stay identical whether or not
  * reduced motion is on — only `transition.duration` drops to 0. Toggling
@@ -22,44 +23,10 @@ import { cn } from "@/lib/cn";
  * element at its real resting state.
  */
 
-// Percentage-space (0-100 viewBox) curve from the lime panel's right edge
-// down to "경험으로.". Shared by the draw-in path and the looping dot's
-// <animateMotion> so both always trace the same line.
+// Percentage-space (0-100 viewBox) curve from the orange panel's right
+// edge down to "경험으로.". Shared by the draw-in path and the looping
+// dot's <animateMotion> so both always trace the same line.
 const CURVE_PATH = "M 33 24 C 54 32, 44 60, 72 79";
-
-/**
- * A quiet wireframe orb — three tilted rings in a shared 3D space. The
- * group turns slowly on one axis while each ring also spins on its own
- * axis/speed/direction (one just gently rocks instead of spinning all
- * the way around), so the shape keeps reshaping rather than reading as
- * a single rigid block. Pure CSS (perspective + preserve-3d + the
- * @keyframes in globals.css), so the site-wide reduced-motion rule that
- * zeroes animation-duration freezes all of it for free — no JS branching
- * needed here the way the curve above requires.
- */
-function WireframeOrb({ className }: { className?: string }) {
-  return (
-    <div
-      aria-hidden
-      className={cn("pointer-events-none [perspective:800px]", className)}
-    >
-      <div
-        className="relative h-full w-full animate-[orb-spin_34s_linear_infinite]"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        <span
-          className="absolute inset-0 animate-[orb-ring-1_23s_linear_infinite] rounded-full border border-plum/30"
-        />
-        <span
-          className="absolute inset-0 animate-[orb-ring-2_17s_linear_infinite] rounded-full border border-lime/70"
-        />
-        <span
-          className="absolute inset-0 animate-[orb-ring-3_7s_ease-in-out_infinite] rounded-full border border-plum/20"
-        />
-      </div>
-    </div>
-  );
-}
 
 export function Hero() {
   const reducedMotion = usePrefersReducedMotion();
@@ -88,14 +55,14 @@ export function Hero() {
       ref={sectionRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative overflow-hidden bg-lilac-bg px-6 pb-10 pt-28 sm:px-8 lg:pt-32"
+      className="paper-grid relative overflow-hidden bg-ivory px-6 pb-10 pt-28 sm:px-8 lg:pt-32"
     >
       <div className="mx-auto flex max-w-[1200px] flex-col">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: d ?? 0.5, delay: d === 0 ? 0 : 0.5 }}
-          className="text-xs font-semibold tracking-[0.2em] text-plum/60"
+          className="text-xs font-semibold tracking-[0.2em] text-ink/60"
         >
           김지영 — BRAND MARKETING PORTFOLIO
         </motion.p>
@@ -113,8 +80,8 @@ export function Hero() {
             <motion.path
               d={CURVE_PATH}
               fill="none"
-              stroke="#302238"
-              strokeOpacity={0.3}
+              stroke="#191914"
+              strokeOpacity={0.25}
               strokeWidth={0.35}
               strokeLinecap="round"
               vectorEffect="non-scaling-stroke"
@@ -127,7 +94,7 @@ export function Hero() {
               }}
             />
             {!reducedMotion && (
-              <circle r="0.9" fill="#d7f568">
+              <circle r="0.9" fill="#f2843c">
                 <animateMotion
                   dur="6s"
                   begin="1.9s"
@@ -139,24 +106,25 @@ export function Hero() {
             )}
           </svg>
 
-          {/* Center wireframe orb — sits in the open corridor between the
-              two lines, where the curve already runs. Desktop/tablet only;
-              a smaller static-flow version replaces it on mobile below,
-              where that corridor doesn't exist. */}
-          <WireframeOrb
-            className="absolute left-[42%] top-1/2 -z-10 hidden h-[130px] w-[130px] -translate-x-1/2 -translate-y-1/2 sm:block sm:h-[150px] sm:w-[150px] lg:h-[170px] lg:w-[170px]"
+          {/* Character illustration — sits in the open corridor between
+              the two lines, where the curve already runs. Desktop/tablet
+              only; a smaller static-flow version replaces it on mobile
+              below, where that corridor doesn't exist. */}
+          <HeroCharacter
+            className="absolute left-[39%] top-1/2 -z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block sm:h-[200px] sm:w-[200px] lg:h-[230px] lg:w-[230px]"
           />
 
-          <h1 className="poster-headline flex flex-col gap-2 text-plum sm:gap-3">
+          <h1 className="poster-headline flex flex-col gap-2 text-ink sm:gap-3">
             <span className="flex justify-start">
               <span className="relative isolate inline-block">
-                {/* Flat lime accent panel — the Hero's one graphic element.
-                    Lives outside the text's own overflow-hidden mask below,
-                    so it can bleed past the text's edges instead of being
-                    clipped to the line box. */}
+                {/* Flat orange accent panel — the Hero's one graphic
+                    element besides the character. Lives outside the
+                    text's own overflow-hidden mask below, so it can bleed
+                    past the text's edges instead of being clipped to the
+                    line box. */}
                 <motion.span
                   aria-hidden
-                  className="absolute -inset-x-3 -inset-y-1 -z-10 rounded-[6px] bg-lime sm:-inset-x-4 sm:-inset-y-2"
+                  className="absolute -inset-x-3 -inset-y-1 -z-10 rounded-[6px] bg-orange sm:-inset-x-4 sm:-inset-y-2"
                   style={{
                     rotate: reducedMotion ? -1.5 : springTilt,
                     transformOrigin: "left center",
@@ -200,7 +168,7 @@ export function Hero() {
           </h1>
         </div>
 
-        <WireframeOrb className="mx-auto mt-8 block h-[110px] w-[110px] sm:hidden" />
+        <HeroCharacter className="mx-auto mt-8 block h-[200px] w-[200px] sm:hidden" />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -208,7 +176,7 @@ export function Hero() {
           transition={{ duration: d ?? 0.5, delay: d === 0 ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 ml-auto w-full max-w-[320px] sm:mt-12 sm:max-w-[360px] lg:max-w-[380px]"
         >
-          <p className="break-keep text-[15px] leading-relaxed text-plum/70">
+          <p className="break-keep text-[15px] leading-relaxed text-ink/70">
             사람들의 반응에서 실마리를 찾아, 콘텐츠와 브랜드 경험으로
             구체화합니다.
           </p>
@@ -216,13 +184,13 @@ export function Hero() {
           <Link
             href="#work"
             data-cursor="link"
-            className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-plum"
+            className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink"
           >
             <span className="relative">
               프로젝트 보기
               <span
                 aria-hidden
-                className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 bg-plum transition-[width] duration-300 ease-out group-hover:w-full"
+                className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 bg-ink transition-[width] duration-300 ease-out group-hover:w-full"
               />
             </span>
             <svg
@@ -244,9 +212,9 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: d ?? 0.5, delay: d === 0 ? 0 : 0.8 }}
-          className="mt-16 border-t border-plum/15 pt-5 sm:mt-20"
+          className="mt-16 border-t border-ink/15 pt-5 sm:mt-20"
         >
-          <p className="text-xs font-semibold tracking-[0.2em] text-plum/45">
+          <p className="text-xs font-semibold tracking-[0.2em] text-ink/45">
             SELECTED WORK
           </p>
           <Link
@@ -254,8 +222,8 @@ export function Hero() {
             data-cursor="link"
             className="group mt-2 inline-flex items-baseline gap-3"
           >
-            <span className="text-sm font-semibold text-plum/40">01</span>
-            <span className="text-lg font-bold text-plum transition-colors group-hover:text-plum/70 sm:text-xl">
+            <span className="text-sm font-semibold text-ink/40">01</span>
+            <span className="text-lg font-bold text-ink transition-colors group-hover:text-ink/70 sm:text-xl">
               HET&apos;S CLUB
             </span>
           </Link>

@@ -52,7 +52,7 @@ export function CustomCursor() {
   if (!enabled) return null;
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[100]">
+    <div aria-hidden className="no-print pointer-events-none fixed inset-0 z-[100]">
       <motion.div
         className="fixed left-0 top-0 h-2 w-2 rounded-full bg-blue"
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}

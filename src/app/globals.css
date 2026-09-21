@@ -17,13 +17,11 @@
   --color-void: #0f0e0a;
   --color-gold: #d4af37;
 
-  /* Hero-only palette — a typography-as-graphic poster treatment.
-     Scoped to Hero alone; the rest of the site keeps the ivory/ink/blue
-     system above. lilac-bg/plum swap with the theme below; lime stays
-     the same vivid accent in both. */
-  --color-lilac-bg: #eae5f4;
-  --color-plum: #302238;
-  --color-lime: #d7f568;
+  /* Hero's one accent color — the flat panel behind "취향을" and the
+     character illustration's sweater. Hero itself now runs on the same
+     ivory/ink system as the rest of the site (background/text swap with
+     the theme below); only this stays constant in both themes. */
+  --color-orange: #f2843c;
 
   /* Fixed dark text for the pastel tag chips (mint/sky/pink/butter),
      which stay the same bright color in both themes and so always need
@@ -41,8 +39,6 @@
 :root[data-theme="dark"] {
   --color-ivory: #17140f;
   --color-ink: #f3efe6;
-  --color-lilac-bg: #1c1622;
-  --color-plum: #ece7f5;
 }
 
 @theme inline {
@@ -55,9 +51,7 @@
   --color-butter: var(--color-butter);
   --color-void: var(--color-void);
   --color-gold: var(--color-gold);
-  --color-lilac-bg: var(--color-lilac-bg);
-  --color-plum: var(--color-plum);
-  --color-lime: var(--color-lime);
+  --color-orange: var(--color-orange);
   --color-ink-fixed: var(--color-ink-fixed);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -151,46 +145,39 @@ section,
   color: var(--foreground);
 }
 
-/* Hero's center wireframe orb. The outer group turns slowly on one axis;
-   each of its three rings also spins on its own axis, speed and
-   direction, so the shape keeps reshaping instead of reading as one
-   rigid block rotating in place. The reduced-motion rule below already
+/* Hero character illustration's floating props (mood-board swatches,
+   coffee cup, plant) — each drifts up/down on its own slow, slightly
+   different cycle so the scene reads as gently alive rather than static
+   or mechanically synced. The reduced-motion rule below already
    collapses every animation's duration to near-zero, so this needs no
    separate handling. */
-@keyframes orb-spin {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-@keyframes orb-ring-1 {
-  from {
-    transform: rotateX(70deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(70deg) rotateY(360deg);
-  }
-}
-
-@keyframes orb-ring-2 {
-  from {
-    transform: rotateY(65deg) rotateX(15deg);
-  }
-  to {
-    transform: rotateY(65deg) rotateX(375deg);
-  }
-}
-
-@keyframes orb-ring-3 {
+@keyframes float-a {
   0%,
   100% {
-    transform: rotateX(20deg) rotateZ(55deg) rotateY(-24deg);
+    transform: translateY(0);
   }
   50% {
-    transform: rotateX(20deg) rotateZ(55deg) rotateY(24deg);
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes float-c {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
   }
 }
 
@@ -227,8 +214,6 @@ html.custom-cursor-active * {
   :root[data-theme="dark"] {
     --color-ivory: #f5f2e8 !important;
     --color-ink: #191914 !important;
-    --color-lilac-bg: #eae5f4 !important;
-    --color-plum: #302238 !important;
   }
 
   .no-print,

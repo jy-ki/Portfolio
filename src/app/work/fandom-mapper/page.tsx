@@ -3,6 +3,7 @@ import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
 import { Media } from "@/components/Media";
+import { SitePreviewEmbed } from "@/components/SitePreviewEmbed";
 import { fandomMapper } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -123,6 +124,13 @@ export default function FandomMapperPage() {
           (Phase 2)의 목표로 남아 있습니다.
         </p>
       </DetailSection>
+
+      <div className="mx-auto max-w-3xl px-6 pb-4 sm:px-8">
+        <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-ink/40">
+          LIVE PREVIEW
+        </p>
+        <SitePreviewEmbed href={fandomMapper.liveUrl} label="Fandom.Mapper" />
+      </div>
     </DetailPageShell>
   );
 }

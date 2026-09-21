@@ -47,7 +47,10 @@ export function Tag({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-ink",
+        // Fixed dark text, not the theme-swapped text-ink: the pastel
+        // chip colors stay the same bright tone in both themes, so their
+        // text must too, rather than flipping to near-white under dark.
+        "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-ink-fixed",
         PALETTE[index % PALETTE.length],
         className
       )}

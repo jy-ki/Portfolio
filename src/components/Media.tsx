@@ -7,9 +7,8 @@ import { cn } from "@/lib/cn";
  * Renders a real photo or a labeled placeholder from the same ImageAsset
  * shape, so callers don't need to branch on whether the image exists yet.
  *
- * `fill`: render to fill an already-sized ancestor (e.g. inside
- * HoverSwapImage's aspect-ratio box) instead of establishing its own
- * aspect ratio.
+ * `fill`: render to fill an already-sized ancestor instead of
+ * establishing its own aspect ratio.
  */
 export function Media({
   asset,

@@ -1,7 +1,7 @@
 import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
 import { MarqueeBand } from "@/components/MarqueeBand";
-import { SelectedWork } from "@/components/SelectedWork";
+import { WorkBentoGrid } from "@/components/work/WorkBentoGrid";
 import { MorePerspectives } from "@/components/MorePerspectives";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -21,7 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         <MarqueeBand items={MARQUEE_ITEMS} />
-        <SelectedWork />
+        <WorkBentoGrid />
         <MorePerspectives />
         <AboutSection />
         <ContactSection />

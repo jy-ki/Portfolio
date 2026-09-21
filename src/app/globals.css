@@ -17,15 +17,32 @@
   --color-void: #0f0e0a;
   --color-gold: #d4af37;
 
-  /* Hero-only palette (first draft) — a typography-as-graphic poster
-     treatment. Scoped to Hero alone; the rest of the site keeps the
-     ivory/ink/blue system above. */
+  /* Hero-only palette — a typography-as-graphic poster treatment.
+     Scoped to Hero alone; the rest of the site keeps the ivory/ink/blue
+     system above. lilac-bg/plum swap with the theme below; lime stays
+     the same vivid accent in both. */
   --color-lilac-bg: #eae5f4;
   --color-plum: #302238;
   --color-lime: #d7f568;
 
+  /* Fixed dark text for the pastel tag chips (mint/sky/pink/butter),
+     which stay the same bright color in both themes and so always need
+     dark text — never the theme-swapped --color-ink. */
+  --color-ink-fixed: #191914;
+
   --background: var(--color-ivory);
   --foreground: var(--color-ink);
+}
+
+/* Dark theme — a manual toggle (see useTheme), not prefers-color-scheme.
+   Reuses 제국 기록부's own void/cream pairing for ivory/ink, so flipping
+   the toggle makes the rest of the site meet that section's palette
+   halfway instead of inventing a second, unrelated dark mode. */
+:root[data-theme="dark"] {
+  --color-ivory: #17140f;
+  --color-ink: #f3efe6;
+  --color-lilac-bg: #1c1622;
+  --color-plum: #ece7f5;
 }
 
 @theme inline {
@@ -41,6 +58,7 @@
   --color-lilac-bg: var(--color-lilac-bg);
   --color-plum: var(--color-plum);
   --color-lime: var(--color-lime);
+  --color-ink-fixed: var(--color-ink-fixed);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system,
@@ -53,12 +71,25 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Smooth color flip when the theme toggle fires. Scoped to the elements
+   that actually carry theme-swapped colors, so it never fights the
+   width/transform transitions buttons and links already declare. */
+body,
+main,
+section,
+.chrome-bar,
+.glass-surface,
+.glass-surface-strong {
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
 /* The one repeating texture that ties every cream section together —
    a faint dot grid, like graph paper. Not used on the dark 제국 기록부
    block, which carries its own identity instead. */
 .paper-grid {
   background-image: radial-gradient(
-    rgba(23, 21, 15, 0.12) 1px,
+    color-mix(in srgb, var(--color-ink) 12%, transparent) 1px,
     transparent 1px
   );
   background-size: 22px 22px;
@@ -84,10 +115,10 @@ body {
 /* Repeats on the real nav and as a decorative strip atop every section —
    the one structural motif every screen shares. */
 .chrome-bar {
-  background: rgba(246, 241, 227, 0.75);
+  background: color-mix(in srgb, var(--color-ivory) 75%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(23, 21, 15, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
 }
 
 .chrome-bar.chrome-bar--dark {
@@ -95,19 +126,21 @@ body {
   border-color: rgba(255, 255, 255, 0.14);
 }
 
-/* Liquid-glass surface for small floating info elements. */
+/* Liquid-glass surface for small floating info elements. Based on
+   --color-ivory (not literal white) so it turns into dark glass under
+   the dark theme instead of staying a bright white panel. */
 .glass-surface {
-  background: rgba(255, 255, 255, 0.5);
+  background: color-mix(in srgb, var(--color-ivory) 50%, transparent);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid color-mix(in srgb, var(--color-ivory) 60%, transparent);
 }
 
 .glass-surface-strong {
-  background: rgba(255, 255, 255, 0.68);
+  background: color-mix(in srgb, var(--color-ivory) 68%, transparent);
   backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(22px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid color-mix(in srgb, var(--color-ivory) 70%, transparent);
 }
 
 /* A section that flips the palette — used once, for 2025 제국 기록부. */
@@ -186,8 +219,18 @@ html.custom-cursor-active * {
   }
 }
 
-/* Print: strip texture/blur/motion so text and images stay legible. */
+/* Print: strip texture/blur/motion so text and images stay legible.
+   Also force the light theme's tokens regardless of the on-screen
+   toggle state — a printed page always uses the light values. */
 @media print {
+  :root,
+  :root[data-theme="dark"] {
+    --color-ivory: #f5f2e8 !important;
+    --color-ink: #191914 !important;
+    --color-lilac-bg: #eae5f4 !important;
+    --color-plum: #302238 !important;
+  }
+
   .no-print,
   canvas {
     display: none !important;

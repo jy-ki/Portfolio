@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
+import { THEME_INIT_SCRIPT } from "@/hooks/useTheme";
 
 export const metadata: Metadata = {
   title: "김지영 포트폴리오",
@@ -15,7 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
+      <head>
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+        />
+      </head>
       <body className="antialiased">
         <CustomCursor />
         {children}

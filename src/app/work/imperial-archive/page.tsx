@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
+import { SitePreviewEmbed } from "@/components/SitePreviewEmbed";
 import { imperialArchive } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -94,6 +95,17 @@ export default function ImperialArchivePage() {
           있습니다.
         </p>
       </DetailSection>
+
+      <div className="mx-auto max-w-3xl px-6 pb-4 sm:px-8">
+        <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-gold/70">
+          LIVE PREVIEW
+        </p>
+        <SitePreviewEmbed
+          href={imperialArchive.liveUrl}
+          label="2025 제국 기록부"
+          tone="dark"
+        />
+      </div>
     </DetailPageShell>
   );
 }

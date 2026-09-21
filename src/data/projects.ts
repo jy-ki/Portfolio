@@ -1,4 +1,4 @@
-import { photo, placeholder, type ImageAsset } from "@/data/media";
+import { photo, type ImageAsset } from "@/data/media";
 
 export type ResultTag = "measured" | "estimated" | "target" | "expected";
 
@@ -104,9 +104,6 @@ export const fandomMapper: ProjectBase & {
 };
 
 export const imperialArchive: ProjectBase & {
-  heroImage: ImageAsset;
-  uiImage: ImageAsset;
-  accent: string;
   liveUrl: string;
 } = {
   slug: "imperial-archive",
@@ -122,17 +119,6 @@ export const imperialArchive: ProjectBase & {
     { tag: "measured", text: "결과를 고화질 이미지로 저장·공유하는 기능 구현" },
     { tag: "expected", text: "고유 번호·동적 공유 문구로 SNS 공유 유도 설계" },
   ],
-  heroImage: placeholder(
-    "제국 기록부 결과 화면",
-    "3:4",
-    "개인화된 서사 + 인장 이미지 + 고유 번호"
-  ),
-  uiImage: placeholder(
-    "황실 기록지 컨셉 UI",
-    "16:9",
-    "다크 배경(#0d0907) + 금색 포인트(#D4AF37) 톤앤매너"
-  ),
-  accent: "#d4af37",
   liveUrl: "https://2025-imperial-archive.vercel.app/",
 };
 

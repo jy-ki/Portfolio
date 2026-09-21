@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { DetailPageShell } from "@/components/detail/DetailPageShell";
 import { DetailHeader } from "@/components/detail/DetailHeader";
 import { DetailSection, TeamRoleNote } from "@/components/detail/DetailSection";
-import { Media } from "@/components/Media";
 import { imperialArchive } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -48,12 +47,6 @@ export default function ImperialArchivePage() {
           달라지는 공유 문구와 “고유 번호” 같은 희소성 장치를 설계에
           포함시켰습니다.
         </p>
-        <Media
-          asset={imperialArchive.uiImage}
-          tone="dark"
-          sizes="(min-width: 768px) 60vw, 100vw"
-          className="rounded-2xl"
-        />
       </DetailSection>
 
       <DetailSection step="04" title="내가 맡은 실행" tone="dark">
@@ -83,12 +76,6 @@ export default function ImperialArchivePage() {
             톤앤매너 디자인
           </li>
         </ul>
-        <Media
-          asset={imperialArchive.heroImage}
-          tone="dark"
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className="rounded-2xl"
-        />
       </DetailSection>
 
       <DetailSection step="05" title="결과와 한계" tone="dark">

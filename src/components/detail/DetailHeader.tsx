@@ -18,7 +18,7 @@ export function DetailHeader({
       <Link
         href="/#work"
         className={cn(
-          "text-xs font-semibold tracking-wide hover:text-blue",
+          "text-xs font-semibold tracking-wide hover:text-orange",
           dark ? "text-[#f3efe6]/50" : "text-ink/50"
         )}
       >
@@ -30,7 +30,7 @@ export function DetailHeader({
       <p
         className={cn(
           "text-xs font-semibold tracking-[0.2em]",
-          dark ? "text-gold" : "text-blue"
+          dark ? "text-gold" : "text-orange"
         )}
       >
         {project.eyebrow}

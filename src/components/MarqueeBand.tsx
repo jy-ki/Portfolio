@@ -13,7 +13,7 @@ import { cn } from "@/lib/cn";
  */
 export function MarqueeBand({
   items,
-  bg = "bg-blue",
+  bg = "bg-orange",
   textClassName = "text-ivory",
 }: {
   items: string[];

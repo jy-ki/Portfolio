@@ -75,7 +75,7 @@ export function SitePreviewEmbed({
             "group inline-flex w-fit items-center gap-2 text-sm font-semibold underline decoration-2 underline-offset-4 transition-colors",
             dark
               ? "text-[#f3efe6] decoration-gold/60 hover:text-gold"
-              : "text-ink decoration-blue/50 hover:text-blue"
+              : "text-ink decoration-orange/50 hover:text-orange"
           )}
         >
           새 탭에서 {label} 전체 화면으로 보기

@@ -26,7 +26,7 @@ export function DetailPageShell({
           <Link
             href="/#work"
             className={cn(
-              "text-sm font-semibold hover:text-blue",
+              "text-sm font-semibold hover:text-orange",
               dark ? "text-[#f3efe6]/60" : "text-ink/60"
             )}
           >

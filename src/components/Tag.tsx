@@ -15,7 +15,7 @@ export function Tag({
 }: {
   children: React.ReactNode;
   index?: number;
-  tone?: "pastel" | "ink" | "blue";
+  tone?: "pastel" | "ink" | "orange";
   className?: string;
 }) {
   if (tone === "ink") {
@@ -31,11 +31,11 @@ export function Tag({
     );
   }
 
-  if (tone === "blue") {
+  if (tone === "orange") {
     return (
       <span
         className={cn(
-          "inline-flex items-center rounded-full bg-blue px-3 py-1 text-xs font-semibold text-ivory",
+          "inline-flex items-center rounded-full bg-orange px-3 py-1 text-xs font-semibold text-ivory",
           className
         )}
       >

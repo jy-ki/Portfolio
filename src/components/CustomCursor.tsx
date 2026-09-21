@@ -54,11 +54,11 @@ export function CustomCursor() {
   return (
     <div aria-hidden className="no-print pointer-events-none fixed inset-0 z-[100]">
       <motion.div
-        className="fixed left-0 top-0 h-2 w-2 rounded-full bg-blue"
+        className="fixed left-0 top-0 h-2 w-2 rounded-full bg-orange"
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}
       />
       <motion.div
-        className="fixed left-0 top-0 rounded-full border border-blue mix-blend-difference"
+        className="fixed left-0 top-0 rounded-full border border-orange mix-blend-difference"
         style={{
           x: ringX,
           y: ringY,

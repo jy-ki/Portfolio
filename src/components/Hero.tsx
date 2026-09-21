@@ -111,7 +111,7 @@ export function Hero() {
               only; a smaller static-flow version replaces it on mobile
               below, where that corridor doesn't exist. */}
           <HeroCharacter
-            className="absolute left-[39%] top-1/2 -z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block sm:h-[200px] sm:w-[200px] lg:h-[230px] lg:w-[230px]"
+            className="absolute left-[38%] top-1/2 -z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block sm:h-[250px] sm:w-[250px] lg:h-[300px] lg:w-[300px]"
           />
 
           <h1 className="poster-headline flex flex-col gap-2 text-ink sm:gap-3">
@@ -168,7 +168,7 @@ export function Hero() {
           </h1>
         </div>
 
-        <HeroCharacter className="mx-auto mt-8 block h-[200px] w-[200px] sm:hidden" />
+        <HeroCharacter className="mx-auto mt-8 block h-[240px] w-[240px] sm:hidden" />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}

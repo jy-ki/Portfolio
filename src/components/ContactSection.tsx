@@ -51,7 +51,7 @@ export function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="link"
-                className="chrome-bar flex items-center justify-between rounded-2xl px-6 py-4 text-left transition-colors hover:bg-blue/10"
+                className="chrome-bar flex items-center justify-between rounded-2xl px-6 py-4 text-left transition-colors hover:bg-orange/10"
               >
                 <span className="text-sm font-semibold text-ink">
                   {link.label}

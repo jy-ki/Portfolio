@@ -21,7 +21,7 @@ export function DetailSection({
         <p
           className={cn(
             "text-xs font-semibold tracking-[0.2em]",
-            dark ? "text-gold" : "text-blue"
+            dark ? "text-gold" : "text-orange"
           )}
         >
           {step}

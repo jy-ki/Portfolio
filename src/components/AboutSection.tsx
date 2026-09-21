@@ -52,7 +52,7 @@ export function AboutSection() {
           {perspectives.map((item) => (
             <ScrollReveal key={item.title}>
               <div className="flex h-full flex-col gap-4">
-                <p className="text-xs font-semibold tracking-[0.15em] text-blue">
+                <p className="text-xs font-semibold tracking-[0.15em] text-orange">
                   {item.englishLabel}
                 </p>
                 <h3 className="text-2xl font-black text-ink">{item.title}</h3>

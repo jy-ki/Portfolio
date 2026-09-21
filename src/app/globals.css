@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* One system, everywhere: warm paper cream + ink, a single cobalt
+  /* One system, everywhere: warm paper cream + ink, a single orange
      accent, and a small rotating set of sticky-note pastels for tags.
      Every section reuses these — no per-section palette swaps. */
   --color-ivory: #f5f2e8;
   --color-ink: #191914;
-  --color-blue: #3155d9;
   --color-mint: #bfe8c8;
   --color-sky: #c7ddf6;
   --color-pink: #f4c9da;
@@ -17,10 +16,10 @@
   --color-void: #0f0e0a;
   --color-gold: #d4af37;
 
-  /* Hero's one accent color — the flat panel behind "취향을" and the
-     character illustration's sweater. Hero itself now runs on the same
-     ivory/ink system as the rest of the site (background/text swap with
-     the theme below); only this stays constant in both themes. */
+  /* The site's one accent color — replaces the earlier cobalt blue.
+     Used everywhere from nav active-states and links to the Hero panel
+     and the character illustration's sweater. Constant across both
+     themes, like the mint/sky/pink/butter tag pastels below. */
   --color-orange: #f2843c;
 
   /* Fixed dark text for the pastel tag chips (mint/sky/pink/butter),
@@ -44,7 +43,6 @@
 @theme inline {
   --color-ivory: var(--color-ivory);
   --color-ink: var(--color-ink);
-  --color-blue: var(--color-blue);
   --color-mint: var(--color-mint);
   --color-sky: var(--color-sky);
   --color-pink: var(--color-pink);

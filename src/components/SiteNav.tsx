@@ -55,7 +55,7 @@ export function SiteNav() {
                 className={cn(
                   "text-sm font-medium transition-colors",
                   activeId === link.id
-                    ? "text-blue"
+                    ? "text-orange"
                     : "text-ink/70 hover:text-ink"
                 )}
               >
@@ -64,7 +64,7 @@ export function SiteNav() {
               <span
                 aria-hidden
                 className={cn(
-                  "absolute -bottom-1.5 left-0 h-[2px] w-full origin-left rounded-full bg-blue transition-transform duration-300 motion-reduce:transition-none",
+                  "absolute -bottom-1.5 left-0 h-[2px] w-full origin-left rounded-full bg-orange transition-transform duration-300 motion-reduce:transition-none",
                   activeId === link.id ? "scale-x-100" : "scale-x-0"
                 )}
               />
@@ -114,7 +114,7 @@ export function SiteNav() {
               onClick={() => setMenuOpen(false)}
               className={cn(
                 "rounded-md px-4 py-3 text-base font-medium transition-colors",
-                activeId === link.id ? "bg-blue/10 text-blue" : "text-ink/80"
+                activeId === link.id ? "bg-orange/10 text-orange" : "text-ink/80"
               )}
             >
               {link.label}

@@ -13,7 +13,7 @@ import { hetsClub, fandomMapper, imperialArchive } from "@/data/projects";
 function StatTile({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col justify-center rounded-3xl border border-ink/10 bg-ivory/60 p-6">
-      <p className="display-heading text-3xl text-blue sm:text-4xl">{value}</p>
+      <p className="display-heading text-3xl text-orange sm:text-4xl">{value}</p>
       <p className="mt-2 text-xs text-ink/55">{label}</p>
     </div>
   );
